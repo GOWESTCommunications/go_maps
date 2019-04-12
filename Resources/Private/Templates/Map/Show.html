@@ -1,22 +1,37 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:layout name="Default"/>
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/fluid/ViewHelpers">
+
+<f:layout name="Default" />
+
 <!-- Keep the id and the js-classes -->
 <f:section name="Main">
-    <f:if condition="{settings.preview.enabled}">
-        <f:render partial="Preview" arguments="{_all}"/>
-    </f:if>
-    <div class="js-gme-container">
-        <f:if condition="{map.showForm}">
-            <f:render partial="Map/Form" arguments="{_all}"/>
-        </f:if>
-        <div class="js-map" id="gme-{map.uid}"></div>
-        <f:render partial="Map/Assign" arguments="{_all}"/>
-        <f:if condition="{map.showCategories}">
-            <f:render partial="Map/Categories" arguments="{_all}"/>
-        </f:if>
-        <f:if condition="{map.showAddresses}">
-            <f:render partial="Map/Addresses" arguments="{_all}"/>
-        </f:if>
+    <div class="row">
+        <div class="col-sm-4">
+            <f:if condition="{map.showForm}">
+                <f:render partial="Map/Form" arguments="{map:map, request:request, addresses: addresses}"/>
+            </f:if>
+            <f:if condition="{map.showCategories}">
+                <f:render partial="Map/Categories" arguments="{map:map, addresses:addresses, request:request, categories: categories}" />
+            </f:if>
+            <f:if condition="{map.showAddresses}">
+                <f:render partial="Map/Addresses" arguments="{map:map, addresses:addresses, request:request, categories: categories}" />
+            </f:if>
+            <f:if condition="{map.showRoute} || {map.calcRoute}">
+                <f:comment>Container for route description</f:comment>
+                <div id="dPanel-gme-{map.uid}"></div>
+            </f:if>
+        </div>
+        <div class="col-sm-8">
+            <div class="js-map" id="gme-{map.uid}"> </div>
+            <div class="infowindow" id="gme-{map.uid}-infowindow">
+                <span class="close"></span>
+                <div class="infowindow-image"></div>
+                <div class="infowindow-content"></div>
+            </div>
+            
+        </div>
     </div>
+    <f:render partial="Map/Assign" arguments="{request:request, map:map, settings:settings, addresses:addresses}" />
+    
 </f:section>
-</html>
+</div>

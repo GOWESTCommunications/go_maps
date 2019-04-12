@@ -336,6 +336,27 @@
 			<trans-unit id="tx_gomapsext_domain_model_map.zoom_min">
 				<source><![CDATA[Zoom min]]></source>
 			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.map_control_style">
+				<source><![CDATA[Style of Controls]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.tab.infowindow">
+				<source><![CDATA[Infowindow]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.palettes.infowindow_template">
+				<source><![CDATA[Template]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_templatepath">
+				<source><![CDATA[Templatepath]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_height">
+				<source><![CDATA[Height]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_width">
+				<source><![CDATA[Width]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_zoom">
+				<source><![CDATA[Zoomfactor]]></source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

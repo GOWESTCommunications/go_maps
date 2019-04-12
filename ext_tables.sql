@@ -42,6 +42,7 @@ CREATE TABLE tx_gomapsext_domain_model_map (
 	scroll_zoom tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	zoom_min int(11) DEFAULT '0' NOT NULL,
 	zoom_max int(11) DEFAULT '0' NOT NULL,
+	selector varchar(255) DEFAULT '' NOT NULL,
 	longitude double(11,6) DEFAULT '0.000000' NOT NULL,
 	latitude double(11,6) DEFAULT '0.000000' NOT NULL,
 	geolocation tinyint(1) unsigned DEFAULT '0' NOT NULL,
@@ -65,7 +66,12 @@ CREATE TABLE tx_gomapsext_domain_model_map (
 	travel_mode int(11) DEFAULT '0' NOT NULL,
 	unit_system int(11) DEFAULT '0' NOT NULL,
 	styled_map_name varchar(255) DEFAULT '' NOT NULL,
-	styled_map_code text NOT NULL
+	styled_map_code text NOT NULL,
+	map_control_style text NOT NULL,
+	infowindow_templatepath varchar(255) DEFAULT '' NOT NULL,
+	infowindow_width varchar(11) DEFAULT '' NOT NULL,
+	infowindow_height varchar(11) DEFAULT '' NOT NULL,
+	infowindow_zoom int(11) DEFAULT '0' NOT NULL
 );
 
 #

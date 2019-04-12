@@ -76,6 +76,12 @@ class Map extends AbstractEntity
      */
     protected $zoomMax;
     /**
+     * selector
+     *
+     * @var \string
+     */
+    protected $selector;
+    /**
      * addresses
      *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Clickstorm\GoMapsExt\Domain\Model\Address>
@@ -429,6 +435,27 @@ class Map extends AbstractEntity
     public function setZoomMax($zoomMax)
     {
         $this->zoomMax = $zoomMax;
+    }
+
+    /**
+     * Returns the selector
+     *
+     * @return \string $selector
+     */
+    public function getSelector()
+    {
+        return $this->selector;
+    }
+
+    /**
+     * Sets the selector
+     *
+     * @param \string $selector
+     * @return void
+     */
+    public function setSelector($selector)
+    {
+        $this->selector = $selector;
     }
 
     /**
@@ -1111,6 +1138,27 @@ class Map extends AbstractEntity
     public function setStyledMapCode($styledMapCode)
     {
         $this->styledMapCode = $styledMapCode;
+    }
+
+       /**
+     * Returns the mapControlStyle
+     *
+     * @return \string $mapControlStyle
+     */
+    public function getMapControlStyle()
+    {
+        return $this->mapControlStyle;
+    }
+
+    /**
+     * Sets the mapControlStyle
+     *
+     * @param \string $mapControlStyle
+     * @return void
+     */
+    public function setMapControlStyle($mapControlStyle)
+    {
+        $this->mapControlStyle = $mapControlStyle;
     }
 
     /**

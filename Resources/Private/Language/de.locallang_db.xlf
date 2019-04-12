@@ -301,7 +301,7 @@
 				<source><![CDATA[Styled Map]]></source>
 				<target><![CDATA[Styled Map]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.palettes.zoom" approved="yes">
+			<trans-unit id="tx_gomapsext_domain_model_map.zoom" approved="yes">
 				<source><![CDATA[Zoom settings]]></source>
 				<target><![CDATA[Zoom Einstellungen]]></target>
 			</trans-unit>
@@ -341,6 +341,22 @@
 				<source><![CDATA[Styled Map name]]></source>
 				<target><![CDATA[Name der benutzerdefierten Karte]]></target>
 			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_templatepath" approved="yes">
+				<source><![CDATA[Templatepath]]></source>
+				<target><![CDATA[Templatepath]]></target>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_height" approved="yes">
+				<source><![CDATA[Height]]></source>
+				<target><![CDATA[Height]]></target>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_width" approved="yes">
+				<source><![CDATA[Width]]></source>
+				<target><![CDATA[Width]]></target>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_zoom" approved="yes">
+				<source><![CDATA[Zoomfactor]]></source>
+				<target><![CDATA[Zoomfactor]]></target>
+			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.tab.controls" approved="yes">
 				<source><![CDATA[Controls]]></source>
 				<target><![CDATA[Steuerung]]></target>
@@ -360,6 +376,10 @@
 			<trans-unit id="tx_gomapsext_domain_model_map.tab.style" approved="yes">
 				<source><![CDATA[Style]]></source>
 				<target><![CDATA[Style]]></target>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.tab.infowindow" approved="yes">
+				<source><![CDATA[Infowindow]]></source>
+				<target><![CDATA[Infowindow]]></target>
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.title" approved="yes">
 				<source><![CDATA[Title]]></source>
