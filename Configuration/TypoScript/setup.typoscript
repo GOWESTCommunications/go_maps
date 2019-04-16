@@ -1,3 +1,5 @@
+page.includeCSS.tx_gomapsext = EXT:go_maps_ext/Resources/Public/Styles/layout.scss
+
 plugin.tx_gomapsext {
 	view {
 		templateRootPaths {

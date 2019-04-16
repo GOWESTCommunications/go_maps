@@ -341,21 +341,21 @@
 				<source><![CDATA[Styled Map name]]></source>
 				<target><![CDATA[Name der benutzerdefierten Karte]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_templatepath" approved="yes">
-				<source><![CDATA[Templatepath]]></source>
-				<target><![CDATA[Templatepath]]></target>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_style" approved="yes">
+				<source><![CDATA[Style]]></source>
+				<target><![CDATA[Style]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_height" approved="yes">
-				<source><![CDATA[Height]]></source>
-				<target><![CDATA[Height]]></target>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_default" approved="yes">
+				<source><![CDATA[Default (Bubble)]]></source>
+				<target><![CDATA[Default (Bubble)]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_width" approved="yes">
-				<source><![CDATA[Width]]></source>
-				<target><![CDATA[Width]]></target>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_custom" approved="yes">
+				<source><![CDATA[Custom Partial]]></source>
+				<target><![CDATA[Custom Partial]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_zoom" approved="yes">
-				<source><![CDATA[Zoomfactor]]></source>
-				<target><![CDATA[Zoomfactor]]></target>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_link" approved="yes">
+				<source><![CDATA[Link]]></source>
+				<target><![CDATA[Link]]></target>
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.tab.controls" approved="yes">
 				<source><![CDATA[Controls]]></source>

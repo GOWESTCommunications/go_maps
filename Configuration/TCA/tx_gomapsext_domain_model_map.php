@@ -29,8 +29,7 @@ return [
 		                          calc_route, scroll_zoom, draggable, double_click_zoom, marker_cluster,
 		                          marker_cluster_zoom, marker_cluster_size, marker_cluster_style, marker_search, default_type,
 		                          scale_control, streetview_control, fullscreen_control, zoom_control,
-                                  map_type_control, map_types, styled_map_name, styled_map_code, map_control_style, infowindow_templatepath, 
-                                  infowindow_height, infowindow_width, infowindow_zoom',
+                                  map_type_control, map_types, styled_map_name, styled_map_code, map_control_style, infowindow_style',
     ],
     'types' => [
         '0' => [
@@ -57,7 +56,7 @@ return [
 					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.tab.style,
 					--palette--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.palettes.styled_map;styled_map,
                     --palette--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.palettes.styled_cluster;styled_cluster,
-                    --div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.tab.infowindow,
+                    --div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.tab.infowindow,infowindow_style,
 					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.tab.others,
 					sys_language_uid, l10n_parent, l10n_diffsource, hidden, --palette--;;time'
         ]
@@ -75,8 +74,6 @@ return [
         'size' => ['showitem' => 'width, height'],
         'styled_map' => ['showitem' => 'styled_map_name, --linebreak--, styled_map_code'],
         'styled_cluster' => ['showitem' => 'marker_cluster_style'],
-        'infowindow_template' => ['showitem' => 'infowindow_templatepath'],
-        'infowindow_dimensions' => ['showitem' => 'infowindow_height, infowindow_width, --linebreak--, infowindow_zoom'],
         'time' => ['showitem' => 'starttime, endtime'],
         'zoom' => ['showitem' => 'zoom, --linebreak--, zoom_min, zoom_max'],
         'selector' => ['showitem' => 'selector'],
@@ -619,40 +616,27 @@ return [
                 'eval' => 'trim'
             ],
         ],
-        'infowindow_templatepath' => [
+        'infowindow_style' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_templatepath',
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.palettes.infowindow_style',
             'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'trim'
-            ],
-        ],
-        'infowindow_height' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_height',
-            'config' => [
-                'type' => 'input',
-                'size' => 4,
-                'eval' => 'int'
-            ],
-        ],
-        'infowindow_width' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_width',
-            'config' => [
-                'type' => 'input',
-                'size' => 4,
-                'eval' => 'int'
-            ],
-        ],
-        'infowindow_zoom' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_zoom',
-            'config' => [
-                'type' => 'input',
-                'size' => 4,
-                'eval' => 'int'
+                'type' => 'radio',
+                'items' => [
+                    [
+                        'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_default',
+                        0
+                    ],
+                    [
+                        'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_custom',
+                        1
+                    ],
+                    [
+                        'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_link',
+                        2
+                    ],
+                ],
+                'eval' => '',
+                'default' => 0
             ],
         ],
         'latitude' => [

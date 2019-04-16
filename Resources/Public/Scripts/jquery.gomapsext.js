@@ -27,7 +27,8 @@
             showForm: null,
             lat: null,
             lng: null,
-            geolocation: null
+            geolocation: null,
+            infowindowStyle: null
         },
         zoomTypes: [],
         defaultMapTypes: [],
@@ -170,18 +171,46 @@
         },
 
         focusAddress: function (addressUid, $element, gme) {
-            var _this = this;
-            $.each(this.markers, function (key, marker) {
-                if (marker.uid == addressUid) {
-                    $element.data("center", marker.position);
-                    if (marker.infoWindow) {
-                        marker.infoWindow.setContent(marker.infoWindowContent);
-                        marker.infoWindow.open(_this.map, marker);
+            var _this = this,
+                _map = this.map;
+            console.log(gme.mapSettings);
+            if(gme.mapSettings.infowindowStyle == 1) {
+                $.each(this.markers, function(key, marker) {
+                    if (marker.uid == addressUid) {
+                        $element.data("center", marker.position);
+                        if (marker.infoWindow) {
+                            console.log(gme.mapSettings.id);
+                            if($('#' + gme.mapSettings.id + '-infowindow').length) {
+                                if(marker.infoWindowImage) {
+                                    $('#' + gme.mapSettings.id + '-infowindow .infowindow-image').html(marker.infoWindowImage);
+                                } else {
+                                    $('#' + gme.mapSettings.id + '-infowindow .infowindow-image').html('');
+                                }
+                                $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').html(marker.infoWindowContent);
+                                $('#' + gme.mapSettings.id + '-infowindow').addClass('open');
+                            } else {
+                                marker.infoWindow.setContent(marker.infoWindowContent);
+                                marker.infoWindow.open(_this.map, marker);
+                            }
+                        }
+                        _this.refreshMap($element, gme);
+                        return true;
                     }
-                    _this.refreshMap($element, gme);
-                    return true;
-                }
-            });
+                });
+            } else {
+                $.each(this.markers, function (key, marker) {
+                    if (marker.uid == addressUid) {
+                        $element.data("center", marker.position);
+                        if (marker.infoWindow) {
+                            marker.infoWindow.setContent(marker.infoWindowContent);
+                            marker.infoWindow.open(_this.map, marker);
+                        }
+                        _this.refreshMap($element, gme);
+                        return true;
+                    }
+                });
+            }
+            
             if ($element.markerCluster) {
                 $element.markerCluster.repaint();
             }
@@ -250,12 +279,14 @@
          * @param gme
          */
         setMapPoint: function (pointDescription, Route, $element, infoWindow, position, gme) {
+
             var _map = this.map,
                 markerOptions = {
                     position: position,
                     map: _map,
                     title: pointDescription.title
-                };
+                },
+                _this = this;
             if (pointDescription.marker != "") {
                 if (pointDescription.imageSize == 1) {
                     var Icon = {
@@ -297,37 +328,69 @@
                     var daddr = (pointDescription.infoWindowLink == 2) ? pointDescription.latitude + ", " + pointDescription.longitude : pointDescription.address;
                     infoWindowContent += '<p class="routeLink"><a href="//www.google.com/maps/dir/?api=1&destination=' + encodeURI(daddr) + '" target="_blank">' + gme.ll.infoWindowLinkText + '<\/a><\/p>';
                 }
-                infoWindowContent = '<div class="gme-info-window">' + infoWindowContent + '</div>';
+                //infoWindowContent = '<div class="gme-info-window">' + infoWindowContent + '</div>';
 
                 if (pointDescription.openByClick) {
                     google.maps.event.addListener(marker, "click", function () {
                         if (!infoWindow.getMap() || gme.infoWindow != this.getPosition()) {
-                            infoWindow.setContent(infoWindowContent);
-                            infoWindow.open(_map, this);
-                            gme.infoWindow = this.getPosition();
+                           /*infoWindow.setContent(infoWindowContent);*/
+                            /*infoWindow.open(_map, this);             */
+                            /*gme.infoWindow = this.getPosition();     */
+                            
+                            if(typeof(window.goTrackEvent) == 'function') {
+                                window.goTrackEvent('gmap - open info window', 'click',  '"' + marker.title + '"');
+                            }
+
+                            $('.tx-go-maps-ext').addClass('infowindowActive');
+                            $(window).trigger('resize');
+                            
+                            _this.focusAddress(pointDescription.uid, $element, gme);
                         }
                     });
                 } else {
                     google.maps.event.addListener(marker, "mouseover", function () {
                         if (!infoWindow.getMap() || gme.infoWindow != this.getPosition()) {
-                            infoWindow.setContent(infoWindowContent);
-                            infoWindow.open(_map, this);
-                            gme.infoWindow = this.getPosition();
+                            /*infoWindow.setContent(infoWindowContent);  */
+                            /*infoWindow.open(_map, this);               */
+                            //gme.infoWindow = this.getPosition();       */
+                            
+                            if(typeof(window.goTrackEvent) == 'function') {
+                                window.goTrackEvent('gmap - open info window', 'mouseover',  '"' + marker.title + '"');
+                            }
+                            
+                            _this.focusAddress(pointDescription.uid, $element, gme);
                         }
                     });
                 }
                 if (!pointDescription.closeByClick) {
                     google.maps.event.addListener(marker, "mouseout", function () {
+
+                        if(typeof(window.goTrackEvent) == 'function') {
+                            window.goTrackEvent('gmap - close info window', 'mouseout',  ' - "' + marker.title + '"');
+                        }
+                    
+                        $('.tx-go-maps-ext').removeClass('infowindowActive');
+                        $(window).trigger('resize');
+
                         infoWindow.close();
                     });
                 }
                 if (pointDescription.opened) {
 
                     $element.off("openinfo").on("openinfo", function () {
-                        infoWindow.setContent(infoWindowContent);
-                        infoWindow.open(_map, marker);
+                        //infoWindow.setContent(infoWindowContent);
+                        //infoWindow.open(_map, marker);
+                        
+                        if(typeof(window.goTrackEvent) == 'function') {
+                            window.goTrackEvent('gmap - open info window', 'initialOpen',  '"' + pointDescription.title + '"');
+                        }
+
+                        $('.tx-go-maps-ext').addClass('infowindowActive');
+                        $(window).trigger('resize');
+                        
+                        _this.focusAddress(pointDescription.uid, $element, gme);
                     });
-                    gme.infoWindow = marker.getPosition();
+                    //gme.infoWindow = marker.getPosition();
                 }
 
                 infoWindow.setContent(infoWindowContent);
@@ -455,7 +518,8 @@
                 zoomControl: gme.mapSettings.zoomControl,
                 mapTypeId: gme.defaultMapTypes[gme.mapSettings.defaultType],
                 mapTypeControl: gme.mapSettings.mapTypeControl,
-                mapTypeControlOptions: {mapTypeIds: gme.mapSettings.mapTypes}
+                mapTypeControlOptions: {mapTypeIds: gme.mapSettings.mapTypes},
+                infowindowStyle: gme.mapSettings.infowindowStyle
             };
         },
 
@@ -703,6 +767,14 @@
 
             $('.js-gme-address').click(function () {
                 var selectedAddress = [$(this).attr('data-address')];
+
+                if(typeof(window.goTrackEvent) == 'function') {
+                    window.goTrackEvent('gmap - address list', 'click', '"' + gme.addresses[parseInt($(this).attr('data-address'))].title + '"');
+                }
+
+                $('.tx-go-maps-ext').addClass('infowindowActive');
+                $(window).trigger('resize');
+
                 _this.focusAddress(selectedAddress, $element, gme);
                 return false;
             });

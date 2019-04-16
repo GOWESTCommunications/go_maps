@@ -82,6 +82,18 @@ class Map extends AbstractEntity
      */
     protected $selector;
     /**
+     * infowindowStyle
+     *
+     * @var int
+     */
+    protected $infowindowStyle;
+    /**
+     * mapControlStyle
+     *
+     * @var \string
+     */
+    protected $mapControlStyle;
+    /**
      * addresses
      *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Clickstorm\GoMapsExt\Domain\Model\Address>
@@ -1138,6 +1150,27 @@ class Map extends AbstractEntity
     public function setStyledMapCode($styledMapCode)
     {
         $this->styledMapCode = $styledMapCode;
+    }
+
+    /**
+     * Returns the infowindowStyle
+     *
+     * @return int $infowindowStyle
+     */
+    public function getInfowindowStyle()
+    {
+        return $this->infowindowStyle;
+    }
+
+    /**
+     * Sets the infowindowStyle
+     *
+     * @param int $infowindowStyle
+     * @return void
+     */
+    public function setInfowindowStyle($infowindowStyle)
+    {
+        $this->infowindowStyle = $infowindowStyle;
     }
 
        /**

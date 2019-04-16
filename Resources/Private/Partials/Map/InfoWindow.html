@@ -1,15 +1,32 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:if condition="{address.infoWindowImages}">
-    <f:for each="{address.infoWindowImages}" as="image">
-        <f:link.typolink parameter="{image.originalResource.link}">
-            <f:image image="{image}" maxWidth="{settings.infoWindow.imageMaxWidth}"/>
-        </f:link.typolink>
-        <f:if condition="{image.originalResource.description}">
-            <p>{image.originalResource.description}</p>
-        </f:if>
-    </f:for>
-</f:if>
-<f:if condition="{address.infoWindowContent}">
-    <f:format.html>{address.infoWindowContent}</f:format.html>
-</f:if>
+
+<!-- Default (Bubble) Start -->
+<div class="infowindow" id="gme-{map.uid}-infowindow">
+    <span class="close">close</span>
+    <f:debug>{address.infoWindowContent}</f:debug>
+    <f:if condition="{address.infoWindowImages}">
+        <div class="infowindow-image">
+            <f:for each="{address.infoWindowImages}" as="image">
+                <f:link.typolink parameter="{image.originalResource.link}">
+                    <f:image image="{image}" maxWidth="{settings.infoWindow.imageMaxWidth}"/>
+                </f:link.typolink>
+                <f:if condition="{image.originalResource.description}">
+                    <p>{image.originalResource.description}</p>
+                </f:if>
+            </f:for>
+        </div>
+    </f:if>
+    <f:if condition="{address.infoWindowContent}">
+        <div class="infowindow-content">
+            <f:format.html>{address.infoWindowContent}</f:format.html>
+        </div>
+    </f:if>
+    <f:if condition="{map.showRoute} || {map.calcRoute}">
+        <f:comment>Container for route description</f:comment>
+        <div id="dPanel-gme-{map.uid}" class="routeTable"></div>
+    </f:if>
+</div>
+<!-- Default (Bubble) Ende-->
+
+
 </html>

@@ -342,20 +342,17 @@
 			<trans-unit id="tx_gomapsext_domain_model_map.tab.infowindow">
 				<source><![CDATA[Infowindow]]></source>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.palettes.infowindow_template">
-				<source><![CDATA[Template]]></source>
+			<trans-unit id="tx_gomapsext_domain_model_map.palettes.infowindow_style">
+				<source><![CDATA[Style]]></source>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_templatepath">
-				<source><![CDATA[Templatepath]]></source>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_default">
+				<source><![CDATA[Default (Bubble)]]></source>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_height">
-				<source><![CDATA[Height]]></source>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_custom">
+				<source><![CDATA[Custom Partial]]></source>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_width">
-				<source><![CDATA[Width]]></source>
-			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_zoom">
-				<source><![CDATA[Zoomfactor]]></source>
+			<trans-unit id="tx_gomapsext_domain_model_map.infowindow_link">
+				<source><![CDATA[Link]]></source>
 			</trans-unit>
 		</body>
 	</file>

@@ -68,10 +68,7 @@ CREATE TABLE tx_gomapsext_domain_model_map (
 	styled_map_name varchar(255) DEFAULT '' NOT NULL,
 	styled_map_code text NOT NULL,
 	map_control_style text NOT NULL,
-	infowindow_templatepath varchar(255) DEFAULT '' NOT NULL,
-	infowindow_width varchar(11) DEFAULT '' NOT NULL,
-	infowindow_height varchar(11) DEFAULT '' NOT NULL,
-	infowindow_zoom int(11) DEFAULT '0' NOT NULL
+	infowindow_style int(11) DEFAULT '0' NOT NULL
 );
 
 #
