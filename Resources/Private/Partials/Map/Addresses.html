@@ -1,10 +1,13 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <ul class="gme-addresses">
 	<f:for each="{addresses}" as="address">
-		<li id="gme-address{address.uid}">
-			<f:link.action arguments="{address:address.uid}"
-			               additionalAttributes="{data-address:address.uid}"
-			               class="js-gme-address">{address.address}</f:link.action>
+		<li>
+            <f:link.action arguments="{address:address.uid}" additionalAttributes="{data-address:address.uid}" class="js-gme-address">
+				<span class="title">{address.title}</span>
+				<br>
+				{address.street} . {address.zip} {address.city} . {address.country} <br>
+                <span class="distance"></span>
+			</f:link.action>
 		</li>
 	</f:for>
 </ul>

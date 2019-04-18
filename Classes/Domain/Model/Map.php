@@ -26,6 +26,7 @@ namespace Clickstorm\GoMapsExt\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
@@ -166,6 +167,12 @@ class Map extends AbstractEntity
      * @var int
      */
     protected $markerClusterSize;
+    /**
+     * markerClusterImage
+     *
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     */
+    protected $markerClusterImage;
     /**
      * markerClusterStyle
      *
@@ -813,6 +820,28 @@ class Map extends AbstractEntity
     {
         $this->markerClusterSize = $markerClusterSize;
     }
+
+    /**
+     * Returns the markerClusterImage
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $markerClusterImage
+     */
+    public function getMarkerClusterImage()
+    {
+        return $this->markerClusterImage;
+    }
+
+    /**
+     * Sets the markerClusterImage
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $markerClusterImage
+     * @return void
+     */
+    public function setMarkerClusterImage(FileReference $markerClusterImage)
+    {
+        $this->markerClusterImage = $markerClusterImage;
+    }
+
 
     /**
      * Returns the markerClusterStyle

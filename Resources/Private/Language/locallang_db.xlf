@@ -198,6 +198,9 @@
 			<trans-unit id="tx_gomapsext_domain_model_map.marker_cluster_zoom">
 				<source><![CDATA[Max zoom level]]></source>
 			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.marker_cluster_image">
+				<source><![CDATA[Cluster Image]]></source>
+			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.marker_search">
 				<source><![CDATA[Marker Search]]></source>
 			</trans-unit>

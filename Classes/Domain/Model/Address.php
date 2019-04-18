@@ -345,7 +345,7 @@ class Address extends AbstractEntity
     /**
      * Returns the marker
      *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference marker
+	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $marker
      */
     public function getMarker()
     {

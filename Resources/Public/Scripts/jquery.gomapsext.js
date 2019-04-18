@@ -28,7 +28,8 @@
             lat: null,
             lng: null,
             geolocation: null,
-            infowindowStyle: null
+            infowindowStyle: null,
+            maxFilteredAddresses: null,
         },
         zoomTypes: [],
         defaultMapTypes: [],
@@ -173,13 +174,12 @@
         focusAddress: function (addressUid, $element, gme) {
             var _this = this,
                 _map = this.map;
-            console.log(gme.mapSettings);
+            $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'block');
             if(gme.mapSettings.infowindowStyle == 1) {
                 $.each(this.markers, function(key, marker) {
                     if (marker.uid == addressUid) {
                         $element.data("center", marker.position);
                         if (marker.infoWindow) {
-                            console.log(gme.mapSettings.id);
                             if($('#' + gme.mapSettings.id + '-infowindow').length) {
                                 if(marker.infoWindowImage) {
                                     $('#' + gme.mapSettings.id + '-infowindow .infowindow-image').html(marker.infoWindowImage);
@@ -188,6 +188,18 @@
                                 }
                                 $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').html(marker.infoWindowContent);
                                 $('#' + gme.mapSettings.id + '-infowindow').addClass('open');
+
+                                $('#' + gme.mapSettings.id + '-infowindow .close').on('click', function() {
+                                    if(typeof(window.goTrackEvent) == 'function') {
+                                        window.goTrackEvent('gmap - close info window', 'click',  ' - "' + marker.title + '"');
+                                    }
+                                
+                                    $('.tx-go-maps-ext').removeClass('infowindowActive');
+                                    $(window).trigger('resize');
+            
+                                    $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'none');
+                                });
+
                             } else {
                                 marker.infoWindow.setContent(marker.infoWindowContent);
                                 marker.infoWindow.open(_this.map, marker);
@@ -287,6 +299,7 @@
                     title: pointDescription.title
                 },
                 _this = this;
+
             if (pointDescription.marker != "") {
                 if (pointDescription.imageSize == 1) {
                     var Icon = {
@@ -460,8 +473,9 @@
                 if ($element.markerCluster != null) {
                     $element.markerCluster.clearMarkers();
                 }
+
                 $element.markerCluster = new MarkerClusterer(this.map, this.markers, {
-                    imagePath: 'https://googlemaps.github.io/js-marker-clusterer/images/m',
+                    imagePath: gme.mapSettings.markerClusterImage,
                     styles: gme.mapSettings.markerClusterStyle,
                     maxZoom: gme.mapSettings.markerClusterZoom,
                     gridSize: gme.mapSettings.markerClusterSize
@@ -608,32 +622,150 @@
         _initializeSearch: function () {
             var _this = this,
                 gme = this.data,
-                $element = this.element;
-
+                $element = this.element,
+                $myForm = $('#' + gme.mapSettings.id + '-search'),
+                searchParameter = this.getURLParameter('sword'),
+                searchIn = $myForm.find('.js-gme-sword').get(0);
+            
+            if(typeof(searchIn) != "undefined") {
+                searchIn.value = searchParameter ? searchParameter : '';
+            }
+                
             // Search
-            if (gme.mapSettings.markerSearch == 1) {
-                var $myForm = $('#' + gme.mapSettings.id + '-search'),
-                    searchIn = $myForm.find('.js-gme-sword');
-
-                $myForm.find('.js-gme-error').hide();
-
-                $myForm.submit(function () {
-                    var submitValue = $(searchIn).val().toLowerCase();
-                    var notFound = true;
-                    $.each(gme.addresses, function (i, address) {
-                        $.each(address, function (index, val) {
-                            if (typeof val == "string" && (index == "title" || index == "infoWindowContent") && submitValue != "") {
-                                if (val.toLowerCase().indexOf(submitValue) != -1) {
-                                    _this.focusAddress(_this.markers[i].uid, $element, gme);
-                                    notFound = false;
-                                }
-                            }
-                        });
-                    });
-                    $myForm.find('.js-gme-error').toggle(notFound);
-                    return false;
+            // Create the search box and link it to the UI element.
+            var autocompleteOptions = {
+                //componentRestrictions: {country: ['de','at','it','ch','sl','cs','hu','hr']}
+            };
+            
+            if(typeof(searchIn) != 'undefined') {
+                var searchBox = new google.maps.places.Autocomplete(searchIn, autocompleteOptions);
+                searchBox.bindTo('bounds', _this.map);
+                
+                google.maps.event.addListener(searchBox, 'place_changed', function() {
+                    
+                    //searchBox.addListener('places_changed', function() {
+                    //_this._searchBoxPlacesChanged(searchBox);
+                    _this._searchAddressByInput(searchIn.value);
                 });
             }
+            
+            
+            $myForm.on('submit', function(e) {
+                e.preventDefault();
+                log("searchBox 2");
+                log(searchIn.value);
+                
+                if(typeof(window.goTrackEvent) == 'function') {
+                    window.goTrackEvent('gmap - search form', 'submit', '"' + $('#' + gme.mapSettings.id + '-search').find('.js-gme-sword').val() + '"');
+                }
+                
+                if(typeof(searchIn) != 'undefined') {
+                    //google.maps.event.trigger(searchIn, 'focus');
+                    //google.maps.event.trigger(searchIn, 'keydown', {
+                    //    keyCode: 13
+                    //});
+                    
+                    _this._searchAddressByInput(searchIn.value);
+                    
+                }
+            });
+            
+            
+            window.setTimeout(function() {
+                if(typeof(searchParameter) != 'undefined' && searchParameter) {
+                    $myForm.trigger('submit');
+                }
+                var supportsOrientationChange = "onorientationchange" in window;
+                var orientationEvent = supportsOrientationChange ? "orientationchange" : "resize";
+                
+                $(window).trigger(orientationEvent);
+            }, 500);
+
+        },
+
+        _searchAddressByInput: function(addressInput) {
+            var _this = this,
+                gme = this.data,
+                $element = this.element,
+                _map = this.map,
+                $myForm = $('#' + gme.mapSettings.id + '-search'),
+                searchIn = $myForm.find('.js-gme-sword').get(0);
+            
+            
+            if(typeof(window.goTrackEvent) == 'function') {
+                window.goTrackEvent('gmap - address search', 'submit', '"' + addressInput + '"');
+            }
+                
+            $element.data("geocoder").geocode(
+                {
+                    "address": addressInput
+                },
+                function(point, status) {
+                    
+                    var searchedAddressObj;
+                    
+                    $(point).each(function(key, curResult){
+                            var curAddressComponent = curResult.address_components[0];
+                            searchedAddressObj = curResult;
+                            
+                            $(curAddressComponent.types).each(function(key, curType){
+                                if (curType == 'country') {
+                                    searchedCountry = true;
+                                }
+                            });
+                    });
+                    
+                    
+                    var coordsOrigin = new Array(searchedAddressObj.geometry.location.lat(), searchedAddressObj.geometry.location.lng());
+                   
+                    $('.gme-addresses > li').slideUp();
+            
+                    for (var addressIndex in gme.addresses) {
+                        
+                        var address = gme.addresses[addressIndex];
+                        var $addressElement = $('.js-gme-address[data-address="' + address.uid + '"]');
+                        var markerLocation = new Array(address.latitude, address.longitude);
+                        var distance = _this._calcDistance(coordsOrigin, markerLocation);
+            
+                        $addressElement.attr('data-distance', distance);
+                        $addressElement.parent().find('.distance').text(distance.toFixed(2) + 'km');
+                        $addressElement.parent().attr('data-distance', distance);
+                    }
+            
+                    _this._sortAddressListByDistance();
+            
+                    var addressUids = new Array();
+            
+                    
+                    $('.gme-addresses > li').slideDown().each(function() {
+                        addressUids.push($(this).find('*[data-address]').first().attr('data-address'));
+                    });
+
+                    console.log(addressUids);
+            
+            
+                    var newBounds = new google.maps.LatLngBounds();
+            
+                    // Clear out the old markers.
+                    $.each(_this.markers, function(key, marker) {
+                        if ($.inArray(marker.uid.toString(), addressUids) > -1) {
+                            marker.setVisible(true);
+                            newBounds.extend(marker.position);
+                        } else {
+                            marker.setVisible(false);
+                        }
+                    });
+                    
+            
+                    _this.bounds = newBounds;
+                    _map.fitBounds(_this.bounds);
+                    
+                    $('.locationList').addClass('act');
+                    
+                    return;
+                    
+                }
+            );
         },
 
         _initializeBackendAddresses: function () {
@@ -701,15 +833,44 @@
 
             // show route from frontend
             if (gme.mapSettings.showForm == 1) {
-                var $mapForm = $('#' + gme.mapSettings.id + '-form');
+                var $mapForm = $('#' + gme.mapSettings.id + '-form'),
+                    searchIn = $mapForm.find('.js-gme-saddress').get(0);
 
-                $mapForm.submit(function () {
+                // Search
+                // Create the search box and link it to the UI element.
+                var autocompleteOptions = {
+                    types: ['(cities)']
+                };
+                
+                
+                if(typeof(searchIn) != 'undefined') {
+                    var searchBox = new google.maps.places.Autocomplete(searchIn, autocompleteOptions);
+                    /*searchBox.bindTo('bounds', _this.map);*/
+                    
+                    google.maps.event.addListener(searchBox, 'place_changed', function() {
+                        $mapForm.trigger('submit');
+                    });
+                }
+            
+            
+                $mapForm.on('submit', function(e) {
+                    e.preventDefault();
+                    
                     var formStartAddress = $mapForm.find('.js-gme-saddress').val(),
-                        endAddressIndex = $mapForm.find('.js-gme-eaddress option:selected').val(),
-                        formEndAddress = endAddressIndex ?
-                            gme.addresses[parseInt(endAddressIndex)].address :
-                            gme.addresses[0].address,
-                        formTravelMode = $mapForm.find('.js-gme-travelmode').val(),
+                        endAddressIndex = $mapForm.find('.js-gme-eaddress option:selected').val();
+                        
+                    if(typeof(endAddressIndex) != 'undefined') {
+                        var formEndAddress = gme.addresses[parseInt(endAddressIndex)].address;
+                    } else {
+                        for (var addressIndex in gme.addresses) {
+                            var address = gme.addresses[addressIndex];
+                            if(address && !formEndAddress) {
+                                var formEndAddress = address.address;
+                            }
+                        }
+                    }
+                    
+                    var formTravelMode = $mapForm.find('.js-gme-travelmode').val(),
                         formUnitSystem = $mapForm.find('.js-gme-unitsystem').val();
 
                     if (formStartAddress == null) {
@@ -778,6 +939,44 @@
                 _this.focusAddress(selectedAddress, $element, gme);
                 return false;
             });
+        },
+        
+
+        _calcDistance: function(origin, destination, factor, type) {
+            var _this = this,
+                $element = this.element,
+                gme = this.gme;
+
+            // 0 = lat; 1 = lon
+            origin = (typeof(origin) != 'undefined') ? origin : [0, 0];
+            destination = (typeof(destination) != 'undefined') ? destination : [0, 0];
+            factor = (typeof(factor) != 'undefined') ? factor : 0.001;
+            type = (typeof(type) != 'undefined') ? type : 'spherical';
+            // values using WGS84 epllipsoid
+            var earth = [];
+            earth['semi-major_axis'] = 6378137.000; // Semi-major axis (a) of earth
+            earth['semi-minor_axis'] = 6356752.314245; // Semi-major axis (b) of earth
+            earth['flattening'] = 1 / 298.257223563; // inverse flattening
+            earth['volumetric_radius'] = 6371000.789974; // volumetric earth radius (R3) = cuberoot(aÂ²b)
+
+            var distance = earth['volumetric_radius'] * Math.acos(
+                Math.sin(_this._toRadians(origin[0])) * Math.sin(_this._toRadians(destination[0])) + Math.cos(_this._toRadians(origin[0])) * Math.cos(_this._toRadians(destination[0])) * Math.cos(_this._toRadians(origin[1] - destination[1])));
+            return parseFloat(distance * factor);
+        },
+
+
+        _toRadians: function(angle) {
+            return angle * (Math.PI / 180);
+        },
+
+        _toDegrees: function(angle) {
+            return angle * (180 / Math.PI);
+        },
+
+        _sortAddressListByDistance: function() {
+            $('.gme-addresses').find('> li').sort(function(a, b) {
+                return +a.getAttribute('data-distance') - +b.getAttribute('data-distance');
+            }).appendTo($('.gme-addresses'));
         }
     };
 
