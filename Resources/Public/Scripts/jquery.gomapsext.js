@@ -802,9 +802,10 @@
             if (gme.mapSettings.showRoute == 0) {
                 $element.data("geocoder", new google.maps.Geocoder());
                 if ($element.data("geocoder")) {
-                    $.each(gme.addresses, function (index, address) {
+                    for (var addressIndex in gme.addresses) {
+                        var address = gme.addresses[addressIndex];
                         _this.addMapPoint(address, Route, $element, infoWindow, gme);
-                    });
+                    }
 
                 }
             }
