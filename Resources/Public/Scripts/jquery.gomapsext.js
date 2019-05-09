@@ -14,6 +14,7 @@
             streetviewControl: null,
             fullscreenControl: null,
             zoomControl: null,
+            zoomControlCustom: null,
             defaultType: null,
             mapTypeControl: null,
             mapTypes: null,
@@ -82,7 +83,26 @@
 	        }, 2000);
 
 	        this.setCategoriesFromRequest();
-	        this.focusAddressFromRequest();
+            this.focusAddressFromRequest();
+            
+            if(this.gme.mapSettings.zoomControlCustom == 1) {
+                $('.tx-go-maps-ext .js-map').append('<div class="zoomControls" unselectable="on" onselectstart="return false;" onmousedown="return false;"><ul><li>'+
+                '<div id="' + this.gme.mapSettings.id + '-zoomIn' + '"  class="button zoomIn"><span></span></div></li><li>'+
+                '<div id="' + this.gme.mapSettings.id + '-zoomOut' + '" class="button zoomOut"><span></span></div></li></ul></div>'
+                );
+
+                $('#' + this.gme.mapSettings.id + '-zoomIn').on('click',function() {
+                    var zoom = $element.data("map").getZoom();
+                    $element.data("map").setZoom(zoom + 1);
+                });
+                
+                $('#' + this.gme.mapSettings.id + '-zoomOut').on('click',function(){
+                    var zoom = $element.data("map").getZoom();
+                    $element.data("map").setZoom(zoom - 1);
+                });
+            }
+            
+            
 
 	        // trigger mapcreated on map
 	        $element.trigger("mapcreated");
@@ -94,6 +114,7 @@
         setCategories: function (selectedCats) {
             var gme = this.data,
                 $element = this.element;
+
 
             $.each(this.markers, function (key, marker) {
                 marker.setVisible(false);
@@ -177,6 +198,7 @@
             $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'block');
             if(gme.mapSettings.infowindowStyle == 1) {
                 $.each(this.markers, function(key, marker) {
+                    console.log(marker);
                     if (marker.uid == addressUid) {
                         $element.data("center", marker.position);
                         if (marker.infoWindow) {
@@ -530,6 +552,7 @@
                 streetViewControl: gme.mapSettings.streetviewControl,
                 fullscreenControl: gme.mapSettings.fullscreenControl,
                 zoomControl: gme.mapSettings.zoomControl,
+                zoomControlCustom: gme.mapSettings.zoomControlCustom,
                 mapTypeId: gme.defaultMapTypes[gme.mapSettings.defaultType],
                 mapTypeControl: gme.mapSettings.mapTypeControl,
                 mapTypeControlOptions: {mapTypeIds: gme.mapSettings.mapTypes},
@@ -737,9 +760,9 @@
                     var addressUids = new Array();
             
                     
-                    $('.gme-addresses > li').slideDown().each(function() {
-                        addressUids.push($(this).find('*[data-address]').first().attr('data-address'));
-                    });
+                   $('.gme-addresses > li').slideDown().each(function() {
+                       addressUids.push($(this).find('*[data-address]').first().attr('data-address'));
+                   });
 
                     console.log(addressUids);
             
@@ -910,7 +933,9 @@
         },
 
         _initializeCheckboxListener: function () {
-            var _this = this;
+            var _this = this,
+                $element = this.element,
+                gme = this.gme;
 
             // categories checkboxes
             $('.js-gme-cat').change(function () {
@@ -926,8 +951,9 @@
                 $element = this.element,
                 gme = this.gme;
 
-            $('.js-gme-address').click(function () {
+            $('.js-gme-address').click(function (e) {
                 var selectedAddress = [$(this).attr('data-address')];
+                console.log(selectedAddress);
 
                 if(typeof(window.goTrackEvent) == 'function') {
                     window.goTrackEvent('gmap - address list', 'click', '"' + gme.addresses[parseInt($(this).attr('data-address'))].title + '"');

@@ -9,11 +9,11 @@
         <f:debug>{map}</f:debug>
         <div class="col-xs-12 col-md-4 col-lg-3 leftSide">
             <section>
-                <h2><f:format.raw><f:translate key="LLL:fileadmin/template/Resources/Private/Language/locallang.xlf:haendlerH2" /></f:format.raw></h2>
-                <h3><f:format.raw><f:translate key="LLL:fileadmin/template/Resources/Private/Language/locallang.xlf:haendlerH3" /></f:format.raw></h3>
+                <h2>Test Map</h2>
+                <h3>Google Maps Test</h3>
                 <div class="formcontainer">
                     <span class="title">
-                        <span class="icon">&#xe926;</span> <f:translate key="LLL:fileadmin/template/Resources/Private/Language/locallang.xlf:quickHaendlerLabel" />
+                        <span class="icon">Suche</span>
                     </span>
                     <f:if condition="{map.showForm}">
                         <f:render partial="Map/Form" arguments="{map:map, request:request, addresses: addresses}"/>
@@ -23,16 +23,19 @@
             <f:if condition="{map.showAddresses}">
                 <div class="locationList">
                     <section>
-                        <span class="close"><f:translate key="LLL:fileadmin/template/Resources/Private/Language/locallang.xlf:neueSuche" /></span>
-                        <h2><f:format.raw><f:translate key="LLL:fileadmin/template/Resources/Private/Language/locallang.xlf:haendlerH2" /></f:format.raw></h2>
+                        <span class="close">Neue Suche</span>
+                        <h2>Test Map</h2>
                         <f:render partial="Map/Addresses" arguments="{map:map, addresses:addresses, request:request, categories: categories}" />
                     </section>
                 </div>
             </f:if>
+            <f:if condition="{map.showCategories}">
+                <f:render partial="Map/Categories" arguments="{request:request, map:map, settings:settings, addresses:addresses, categories: categories}" />
+            </f:if>
         </div>
         
         <f:if condition="{map.infowindowStyle} == 1">
-            <f:render partial="Map/InfoWindowCustom" arguments="{request:request, map:map, settings:settings, addresses:addresses}" />
+            <f:render partial="Map/InfoWindowCustom" arguments="{request:request, map:map, settings:settings, addresses:addresses, categories: categories}" />
         </f:if>
         
         <div class="col-xs-12 col-md-8 col-lg-9 mapWrapper">

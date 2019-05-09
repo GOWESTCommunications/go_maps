@@ -222,6 +222,12 @@ class Map extends AbstractEntity
      */
     protected $zoomControl = false;
     /**
+     * zoomControlCustom
+     *
+     * @var boolean
+     */
+    protected $zoomControlCustom = false;
+    /**
      * mapTypeControl
      *
      * @var boolean
@@ -1054,6 +1060,37 @@ class Map extends AbstractEntity
     public function setZoomControl($zoomControl)
     {
         $this->zoomControl = $zoomControl;
+    }
+
+    /**
+     * Returns the zoomControlCustom
+     *
+     * @return boolean $zoomControlCustom
+     */
+    public function getZoomControlCustom()
+    {
+        return $this->zoomControlCustom;
+    }
+
+    /**
+     * Returns the boolean state of zoomControlCustom
+     *
+     * @return boolean
+     */
+    public function isZoomControlCustom()
+    {
+        return $this->getZoomControlCustom();
+    }
+
+    /**
+     * Sets the zoomControlCustom
+     *
+     * @param boolean $zoomControlCustom
+     * @return void
+     */
+    public function setZoomControlCustom($zoomControlCustom)
+    {
+        $this->zoomControlCustom = $zoomControlCustom;
     }
 
     /**

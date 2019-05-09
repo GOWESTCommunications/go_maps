@@ -2,3 +2,53 @@
 @import "typo3conf/ext/gowest_theme/Resources/Public/Sass/mixins/breakpoints";
 @import "typo3conf/ext/gowest_theme/Resources/Public/Sass/mixins/gowest";
 
+
+.zoomControls {
+    right: 0px;
+    top: 85px;
+    z-index: 7;
+    position:absolute;
+    left: auto;
+    margin-right: 10px;
+
+}
+
+.zoomControls ul li {
+    padding: 0;
+    width: 42px;
+    height: 42px;
+    background: rgba(46,65,84,1);
+    margin: 0 0 1px;
+    list-style-type: none;
+    
+    span {
+        width: 42px;
+        height: 42px;
+        display: block;
+        text-align: center;
+        line-height: 42px;
+        color: #FFF;
+        overflow: hidden;
+        text-indent: -9999em;
+        cursor: pointer;
+        position: absolute;
+        
+        &:before {
+            content: '\2b';
+            width: 42px;
+            height: 42px;
+            line-height: 42px;
+            text-align: center;
+            text-indent: 0em;
+            position: absolute;
+            left: 0;
+            right: 0;
+            font-size: 14px;
+            font-family: 'default';
+        }
+    }
+    
+    .zoomOut span:before {
+        content: '\23af';
+    }
+}

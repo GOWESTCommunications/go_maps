@@ -6,7 +6,13 @@
 				<span class="title">{address.title}</span>
 				<br>
 				{address.street} . {address.zip} {address.city} . {address.country} <br>
-                <span class="distance"></span>
+				
+				<f:if condition="{map.showCategories}">
+					<f:for each="{address.categories}" as="category">
+						<span class="cat">Kategorie: {category.title}</span>
+					</f:for>
+				</f:if>
+				<span class="distance"></span>
 			</f:link.action>
 		</li>
 	</f:for>

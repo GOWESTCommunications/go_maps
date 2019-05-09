@@ -28,8 +28,8 @@ return [
 		                          addresses, kml_url, kml_local, show_route,
 		                          calc_route, scroll_zoom, draggable, double_click_zoom, marker_cluster,
 		                          marker_cluster_zoom, marker_cluster_size, marker_cluster_image, marker_cluster_style, marker_search, default_type,
-		                          scale_control, streetview_control, fullscreen_control, zoom_control,
-                                  map_type_control, map_types, styled_map_name, styled_map_code, map_control_style, infowindow_style',
+		                          scale_control, streetview_control, fullscreen_control, zoom_control, zoom_control_custom
+                                  map_type_control, map_types, styled_map_name, styled_map_code, infowindow_style',
     ],
     'types' => [
         '0' => [
@@ -50,7 +50,6 @@ return [
 					--palette--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.palettes.additional;additional,
 					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.tab.controls,
                     --palette--;;map_control,--palette--;;controls,
-                    --palette--;;map_control_custom,--palette--;;controls,
 					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.tab.route,
 					calc_route, travel_mode, unit_system, show_route,
 					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.tab.style,
@@ -64,13 +63,12 @@ return [
     'palettes' => [
         'address_interaction' => ['showitem' => 'marker_search, show_addresses, show_categories'],
         'cluster' => ['showitem' => 'marker_cluster, --linebreak--, marker_cluster_zoom, marker_cluster_size, --linebreak--, marker_cluster_image'],
-        'controls' => ['showitem' => 'zoom_control, scale_control, streetview_control, fullscreen_control'],
+        'controls' => ['showitem' => 'zoom_control, scale_control, streetview_control, fullscreen_control, --linebreak--, zoom_control_custom'],
         'coordinates' => ['showitem' => 'latitude, longitude'],
         'geolocation' => ['showitem' => 'geolocation'],
         'interaction' => ['showitem' => 'scroll_zoom, draggable, double_click_zoom'],
         'kml' => ['showitem' => 'kml_url, --linebreak--, kml_preserve_viewport, kml_local'],
         'map_control' => ['showitem' => 'map_type_control, --linebreak--, map_types'],
-        'map_control_custom' => ['showitem' => 'map_control_style'],
         'size' => ['showitem' => 'width, height'],
         'styled_map' => ['showitem' => 'styled_map_name, --linebreak--, styled_map_code'],
         'styled_cluster' => ['showitem' => 'marker_cluster_style'],
@@ -521,14 +519,12 @@ return [
                 'default' => 1
             ],
         ],
-        'map_control_style' => [
+        'zoom_control_custom' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.map_control_style',
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.zoom_control_custom',
             'config' => [
-                'type' => 'text',
-                'cols' => 40,
-                'rows' => 15,
-                'eval' => 'trim'
+                'type' => 'check',
+                'default' => 1
             ],
         ],
         'map_type_control' => [
@@ -679,10 +675,6 @@ return [
                     [
                         'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_custom',
                         1
-                    ],
-                    [
-                        'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_map.infowindow_link',
-                        2
                     ],
                 ],
                 'eval' => '',

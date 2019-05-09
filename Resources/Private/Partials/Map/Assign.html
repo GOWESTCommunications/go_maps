@@ -48,6 +48,7 @@
     streetviewControl: {f:if(condition:"{map.streetviewControl}", then:"1", else:"0")},
     fullscreenControl: {f:if(condition:"{map.fullscreenControl}", then:"1", else:"0")},
     zoomControl: {f:if(condition:"{map.zoomControl}", then:"1", else:"0")},
+    zoomControlCustom: {f:if(condition:"{map.zoomControlCustom}", then:"1", else:"0")},
     mapTypeControl: {f:if(condition:"{map.mapTypeControl}", then:"1", else:"0")},
     showRoute: {f:if(condition:"{map.showRoute}", then:"1", else:"0")},
     calcRoute: {f:if(condition:"{map.calcRoute}", then:"1", else:"0")},
@@ -142,6 +143,7 @@
         categories: '<f:for each="{address.categories}" as="category" iteration="icat">{category.uid}{f:if(condition:icat.isLast,then:'',else:',')}</f:for>'
         <f:format.raw>}</f:format.raw>
     </f:for>
+    console.log(gme.addresses);
 
     gme.ll = {};
     gme.ll.alert = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomapsext_partials_map_assign.alert" />";

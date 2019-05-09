@@ -60,6 +60,7 @@ CREATE TABLE tx_gomapsext_domain_model_map (
 	streetview_control tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	fullscreen_control tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	zoom_control tinyint(1) unsigned DEFAULT '0' NOT NULL,
+	zoom_control_custom tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	map_type_control tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	map_types varchar(255) DEFAULT '' NOT NULL,
 	show_route tinyint(1) unsigned DEFAULT '0' NOT NULL,
@@ -68,7 +69,6 @@ CREATE TABLE tx_gomapsext_domain_model_map (
 	unit_system int(11) DEFAULT '0' NOT NULL,
 	styled_map_name varchar(255) DEFAULT '' NOT NULL,
 	styled_map_code text NOT NULL,
-	map_control_style text NOT NULL,
 	infowindow_style int(11) DEFAULT '0' NOT NULL
 );
 

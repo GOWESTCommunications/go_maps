@@ -333,6 +333,9 @@
 			<trans-unit id="tx_gomapsext_domain_model_map.zoom_control">
 				<source><![CDATA[Zoom control]]></source>
 			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.zoom_control_custom">
+				<source><![CDATA[Zoom control custom]]></source>
+			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.zoom_max">
 				<source><![CDATA[Zoom max]]></source>
 			</trans-unit>
