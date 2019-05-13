@@ -1051,7 +1051,6 @@ function MarkerClusterer(map, opt_markers, opt_options) {
   
     // Trigger the clusterclick event.
     google.maps.event.trigger(markerClusterer, 'clusterclick', this.cluster_, event);
-  
     if (markerClusterer.isZoomOnClick()) {
       // Zoom into the cluster.
       this.map_.fitBounds(this.cluster_.getBounds());
@@ -1078,9 +1077,10 @@ function MarkerClusterer(map, opt_markers, opt_options) {
     var isDragging = false;
     google.maps.event.addDomListener(this.div_, 'click', function(event) {
       // Only perform click when not preceded by a drag
-      if (!isDragging) {
-        that.triggerClusterClick(event);
-      }
+     // if (!isDragging) {
+       // that.triggerClusterClick(event);
+     // }
+     that.triggerClusterClick(event);
     });
     google.maps.event.addDomListener(this.div_, 'mousedown', function() {
       isDragging = false;

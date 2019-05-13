@@ -41,7 +41,9 @@
     <f:if condition="{map.markerClusterImage}">         
         markerClusterImage: '{f:uri.image(src:map.markerClusterImage.originalResource.publicUrl,absolute:1)}',
     </f:if>
-          
+    <f:if condition="{map.markerImage}">         
+        markerImage: '{f:uri.image(src:map.markerImage.originalResource.publicUrl,absolute:1)}',
+    </f:if>   
     markerSearch: {f:if(condition:"{map.markerSearch}", then:"1", else:"0")},
     defaultType: {map.defaultType},
     scaleControl: {f:if(condition:"{map.scaleControl}", then:"1", else:"0")},

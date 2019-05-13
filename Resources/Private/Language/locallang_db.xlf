@@ -201,6 +201,9 @@
 			<trans-unit id="tx_gomapsext_domain_model_map.marker_cluster_image">
 				<source><![CDATA[Cluster Image]]></source>
 			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.marker_image">
+				<source><![CDATA[Marker Image]]></source>
+			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.marker_search">
 				<source><![CDATA[Marker Search]]></source>
 			</trans-unit>
@@ -212,6 +215,9 @@
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.palettes.cluster">
 				<source><![CDATA[Cluster settings]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.palettes.marker">
+				<source><![CDATA[Marker settings]]></source>
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.palettes.container">
 				<source><![CDATA[Container]]></source>

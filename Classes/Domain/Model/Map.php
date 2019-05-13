@@ -174,6 +174,12 @@ class Map extends AbstractEntity
      */
     protected $markerClusterImage;
     /**
+     * markerImage
+     *
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     */
+    protected $markerImage;
+    /**
      * markerClusterStyle
      *
      * @var \string
@@ -846,6 +852,27 @@ class Map extends AbstractEntity
     public function setMarkerClusterImage(FileReference $markerClusterImage)
     {
         $this->markerClusterImage = $markerClusterImage;
+    }
+
+    /**
+     * Returns the markerImage
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $markerImage
+     */
+    public function getMarkerImage()
+    {
+        return $this->markerImage;
+    }
+
+    /**
+     * Sets the markerImage
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $markerImage
+     * @return void
+     */
+    public function setMarkerImage(FileReference $markerImage)
+    {
+        $this->markerImage = $markerImage;
     }
 
 

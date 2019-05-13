@@ -198,7 +198,6 @@
             $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'block');
             if(gme.mapSettings.infowindowStyle == 1) {
                 $.each(this.markers, function(key, marker) {
-                    console.log(marker);
                     if (marker.uid == addressUid) {
                         $element.data("center", marker.position);
                         if (marker.infoWindow) {
@@ -322,7 +321,7 @@
                 },
                 _this = this;
 
-            if (pointDescription.marker != "") {
+            if (pointDescription.marker) {
                 if (pointDescription.imageSize == 1) {
                     var Icon = {
                         url: pointDescription.marker,
@@ -343,7 +342,8 @@
                 } else {
 	                $.extend(markerOptions, {icon: pointDescription.marker});
                 }
-
+            } else if (gme.mapSettings.markerImage) {
+                $.extend(markerOptions, {icon: gme.mapSettings.markerImage});
             }
             var marker = new google.maps.Marker(markerOptions);
 
@@ -763,8 +763,6 @@
                    $('.gme-addresses > li').slideDown().each(function() {
                        addressUids.push($(this).find('*[data-address]').first().attr('data-address'));
                    });
-
-                    console.log(addressUids);
             
             
                     var newBounds = new google.maps.LatLngBounds();
@@ -961,7 +959,6 @@
 
             $('.js-gme-address').click(function (e) {
                 var selectedAddress = [$(this).attr('data-address')];
-                console.log(selectedAddress);
 
                 if(typeof(window.goTrackEvent) == 'function') {
                     window.goTrackEvent('gmap - address list', 'click', '"' + gme.addresses[parseInt($(this).attr('data-address'))].title + '"');
