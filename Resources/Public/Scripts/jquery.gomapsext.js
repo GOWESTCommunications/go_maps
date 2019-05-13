@@ -943,7 +943,14 @@
                 var selectedCats = $('.js-gme-cat:checked').map(function () {
                     return this.value;
                 });
-                _this.setCategories(selectedCats);
+                if(selectedCats.length > 0) {
+                    _this.setCategories(selectedCats);
+                } else {
+                    $.each(_this.markers, function (key, marker) {
+                        marker.setVisible(true);
+                    }); 
+                }
+                _this.refreshMap($element, gme);
             });
         },
 
