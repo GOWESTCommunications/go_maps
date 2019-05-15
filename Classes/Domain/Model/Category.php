@@ -29,7 +29,7 @@ namespace Clickstorm\GoMaps\Domain\Model;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 
 /**
- * @package go_maps_ext
+ * @package go_maps
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category

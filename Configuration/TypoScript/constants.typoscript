@@ -1,11 +1,11 @@
 plugin.tx_gomaps {
 	view {
 		# cat=plugin.tx_gomaps/file; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:go_maps_ext/Resources/Private/Templates/
+		templateRootPath = EXT:go_maps/Resources/Private/Templates/
 		# cat=plugin.tx_gomaps/file; type=string; label=Path to template partials (FE)
-		partialRootPath = EXT:go_maps_ext/Resources/Private/Partials/
+		partialRootPath = EXT:go_maps/Resources/Private/Partials/
 		# cat=plugin.tx_gomaps/file; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:go_maps_ext/Resources/Private/Layouts/
+		layoutRootPath = EXT:go_maps/Resources/Private/Layouts/
 	}
 	settings {
 		# cat=plugin.tx_gomaps//a; type=text+; label = Show Addresses from this PIDs

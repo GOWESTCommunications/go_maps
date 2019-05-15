@@ -3,7 +3,7 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-10-22T11:54:32Z">
 		<header>
 			<type>database</type>
-			<description>Language labels for database tables/fields belonging to extension 'go_maps_ext'</description>
+			<description>Language labels for database tables/fields belonging to extension 'go_maps'</description>
 			<authorName>Marc Hirdes</authorName>
 			<authorEmail>marc_hirdes@gmx.de</authorEmail>
 			<generator>LFEditor</generator>

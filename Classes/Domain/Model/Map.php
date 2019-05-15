@@ -32,7 +32,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
- * @package go_maps_ext
+ * @package go_maps
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Map extends AbstractEntity
@@ -1482,7 +1482,7 @@ class Map extends AbstractEntity
         for ($i = 0; $i <= 4; $i++) {
             $travelModes[$i] = LocalizationUtility::translate(
                 'tx_gomaps_domain_model_map.travel_mode.' . $i,
-                'go_maps_ext'
+                'go_maps'
             );
         }
 
@@ -1499,7 +1499,7 @@ class Map extends AbstractEntity
         for ($i = 2; $i <= 3; $i++) {
             $unitSystems[$i] = LocalizationUtility::translate(
                 'tx_gomaps_domain_model_map.unit_system.' . $i,
-                'go_maps_ext'
+                'go_maps'
             );
         }
 

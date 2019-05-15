@@ -9,7 +9,7 @@
 			<ROOT>
 				<TCEforms>
 					<sheetTitle>
-						LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomaps_flexform_settings
+						LLL:EXT:go_maps/Resources/Private/Language/locallang.xlf:tx_gomaps_flexform_settings
 					</sheetTitle>
 				</TCEforms>
 				<type>array</type>
@@ -17,7 +17,7 @@
 					<settings.map>
 						<TCEforms>
 							<label>
-								LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomaps_flexform_settings.map
+								LLL:EXT:go_maps/Resources/Private/Language/locallang.xlf:tx_gomaps_flexform_settings.map
 							</label>
 							<config>
 								<type>group</type>

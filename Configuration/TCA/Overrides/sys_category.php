@@ -4,7 +4,7 @@ defined('TYPO3_MODE') or die();
 $tempCols = [
     'gme_marker' => [
         'exclude' => 1,
-        'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.marker',
+        'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.marker',
         'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
             'gme_marker',
             [
@@ -54,7 +54,7 @@ $tempCols = [
     ],
     'gme_image_size' => [
         'exclude' => 1,
-        'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_size',
+        'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_size',
         'config' => [
             'type' => 'check',
             'default' => 0
@@ -62,7 +62,7 @@ $tempCols = [
     ],
     'gme_image_width' => [
         'exclude' => 1,
-        'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_width',
+        'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_width',
         'config' => [
             'type' => 'input',
             'size' => 4,
@@ -71,7 +71,7 @@ $tempCols = [
     ],
     'gme_image_height' => [
         'exclude' => 1,
-        'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_height',
+        'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_height',
         'config' => [
             'type' => 'input',
             'size' => 4,
@@ -94,6 +94,6 @@ $tempCols = [
 // add fields
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
     'sys_category',
-    '--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:sys_category.tab.map,
-	--palette--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.palettes.marker;gme_marker'
+    '--div--;LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:sys_category.tab.map,
+	--palette--;LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.palettes.marker;gme_marker'
 );

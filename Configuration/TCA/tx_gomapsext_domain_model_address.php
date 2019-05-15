@@ -2,7 +2,7 @@
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address',
+        'title' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -20,7 +20,7 @@ return [
             'endtime' => 'endtime',
         ],
         'searchFields' => 'title,address,info_window_content',
-        'iconfile' => 'EXT:go_maps_ext/Resources/Public/Icons/tx_gomaps_domain_model_address.svg'
+        'iconfile' => 'EXT:go_maps/Resources/Public/Icons/tx_gomaps_domain_model_address.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, categories,
@@ -32,10 +32,10 @@ return [
             'showitem' => '--palette--;;address,
                     --div--;Position,
 					--palette--;;data, configuration_map, --pallette--;;marker,
-					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window,
+					--div--;LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window,
 					info_window_images, --palette--;;link,
-					--palette--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.palettes.interaction;interaction,
-					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.others,
+					--palette--;LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.palettes.interaction;interaction,
+					--div--;LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.others,
 					sys_language_uid, l10n_parent, l10n_diffsource, hidden, --palette--;;time,categories',
         ]
     ],
@@ -133,7 +133,7 @@ return [
         ],
         'title' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.title',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.title',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -142,7 +142,7 @@ return [
         ],
         'subtitle' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.subtitle',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.subtitle',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -151,7 +151,7 @@ return [
         ],
         'company' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.company',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.company',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -160,7 +160,7 @@ return [
         ],
         'name' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.name',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -169,7 +169,7 @@ return [
         ],
         'email' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.email',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.email',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -178,7 +178,7 @@ return [
         ],
         'phonenumber' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.phonenumber',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.phonenumber',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -187,7 +187,7 @@ return [
         ],
         'fax' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.fax',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.fax',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -196,7 +196,7 @@ return [
         ],
         'web' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.web',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.web',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -205,7 +205,7 @@ return [
         ],
         'street' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.street',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.street',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -214,7 +214,7 @@ return [
         ],
         'housenumber' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.housenumber',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.housenumber',
             'config' => [
                 'type' => 'input',
                 'size' => 5,
@@ -223,7 +223,7 @@ return [
         ],
         'zip' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.zip',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.zip',
             'config' => [
                 'type' => 'input',
                 'size' => 5,
@@ -232,7 +232,7 @@ return [
         ],
         'city' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.city',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.city',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -241,7 +241,7 @@ return [
         ],
         'country' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.country',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.country',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -250,7 +250,7 @@ return [
         ],
         'description' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.description',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.description',
             'config' => [
                 'type' => 'text',
                 'cols' => 40,
@@ -266,7 +266,7 @@ return [
         ],
         'configuration_map' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.configuration_map',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.configuration_map',
             'config' => [
                 'type' => 'user',
                 'userFunc' => Clickstorm\GoMaps\Utility\LocationUtility::class . '->render',
@@ -282,7 +282,7 @@ return [
         ],
         'latitude' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.latitude',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.latitude',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -291,7 +291,7 @@ return [
         ],
         'longitude' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.longitude',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.longitude',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -300,7 +300,7 @@ return [
         ],
         'address' => [
             'exclude' => 0,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.address',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.address',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -309,7 +309,7 @@ return [
         ],
         'marker' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.marker',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.marker',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'marker',
                 [
@@ -359,7 +359,7 @@ return [
         ],
         'image_size' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_size',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_size',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -367,7 +367,7 @@ return [
         ],
         'image_width' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_width',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_width',
             'config' => [
                 'type' => 'input',
                 'size' => 4,
@@ -376,7 +376,7 @@ return [
         ],
         'image_height' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_height',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.image_height',
             'config' => [
                 'type' => 'input',
                 'size' => 4,
@@ -385,7 +385,7 @@ return [
         ],
         'info_window_content' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_content',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_content',
             'config' => [
                 'type' => 'text',
                 'cols' => 40,
@@ -401,7 +401,7 @@ return [
 		],
 		'info_window_images' => [
 			'exclude' => 1,
-			'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_images',
+			'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_images',
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 				'tx_gomaps_info_window_image',
 				[
@@ -451,20 +451,20 @@ return [
         ],
         'info_window_link' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_link',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_link',
             'config' => [
                 'type' => 'radio',
                 'items' => [
                     [
-                        'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_link.0',
+                        'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_link.0',
                         0
                     ],
                     [
-                        'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_link.1',
+                        'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_link.1',
                         1
                     ],
                     [
-                        'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_link.2',
+                        'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.info_window_link.2',
                         2
                     ]
                 ],
@@ -475,7 +475,7 @@ return [
         ],
         'close_by_click' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.close_by_click',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.close_by_click',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -483,7 +483,7 @@ return [
         ],
         'open_by_click' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.open_by_click',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.open_by_click',
             'config' => [
                 'type' => 'check',
                 'default' => 0
@@ -491,7 +491,7 @@ return [
         ],
         'opened' => [
             'exclude' => 1,
-            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.opened',
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.opened',
             'config' => [
                 'type' => 'check',
                 'default' => 0

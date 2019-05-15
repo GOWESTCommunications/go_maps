@@ -286,12 +286,12 @@ EOT;
 			       id="' . $addressId . '" 
 			       style="display:inline-block;width:300px">
 			<input type="button" 
-			       value="' . LocalizationUtility::translate('update_by_position', 'go_maps_ext') . '" 
+			       value="' . LocalizationUtility::translate('update_by_position', 'go_maps') . '" 
 			       class="btn btn-sm btn-default"
 			       onclick="TxClimbingSites.codeAddress()">
 			<input id="gme-btn-address"
 			       type="button" 
-			       value="' . LocalizationUtility::translate('update_by_address', 'go_maps_ext') . '" 
+			       value="' . LocalizationUtility::translate('update_by_address', 'go_maps') . '" 
 			       class="btn btn-sm btn-default"
 			       style="display:none;"
 			       onclick="TxClimbingSites.codeByAddress()">

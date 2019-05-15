@@ -24,7 +24,7 @@
 
 // Google Polylines (https://developers.google.com/maps/documentation/javascript/overlays?#Polylines)
 
-// add the Polygon to go_maps_ext-Map
+// add the Polygon to go_maps-Map
 jQuery(document).ready(function() {
 	// Get element with ID (title) of the Map
 	var element = jQuery('#Example');

@@ -27,7 +27,7 @@ namespace Clickstorm\GoMaps\Evaluation;
  ***************************************************************/
 
 /**
- * @package go_maps_ext
+ * @package go_maps
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class Double6Evaluator

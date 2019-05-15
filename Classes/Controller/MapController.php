@@ -36,7 +36,7 @@ use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
- * @package go_maps_ext
+ * @package go_maps
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class MapController extends ActionController
@@ -65,7 +65,7 @@ class MapController extends ActionController
 
     public function initializeAction()
     {
-        $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('go_maps_ext');
+        $extConf = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('go_maps');
 
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $addJsMethod = 'addJs';

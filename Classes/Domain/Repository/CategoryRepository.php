@@ -27,7 +27,7 @@ namespace Clickstorm\GoMaps\Domain\Repository;
  ***************************************************************/
 
 /**
- * @package go_maps_ext
+ * @package go_maps
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository

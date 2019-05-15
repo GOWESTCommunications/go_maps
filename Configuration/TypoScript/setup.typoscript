@@ -1,4 +1,4 @@
-page.includeCSS.tx_gomaps = EXT:go_maps_ext/Resources/Public/Styles/layout.scss
+page.includeCSS.tx_gomaps = EXT:go_maps/Resources/Public/Styles/layout.scss
 
 plugin.tx_gomaps {
 	view {
