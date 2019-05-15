@@ -87,11 +87,41 @@
 			<trans-unit id="tx_gomapsext_domain_model_address.street">
 				<source><![CDATA[Street]]></source>
 			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.housenumber">
+				<source><![CDATA[Hausnummer]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.country">
+				<source><![CDATA[Land]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.description">
+				<source><![CDATA[Beschreibung]]></source>
+			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_address.style">
 				<source><![CDATA[Style]]></source>
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_address.title">
 				<source><![CDATA[Title]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.subtitle">
+				<source><![CDATA[Untertitle]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.company">
+				<source><![CDATA[Firma]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.name">
+				<source><![CDATA[Name]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.email">
+				<source><![CDATA[E-Mail]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.phonenumber">
+				<source><![CDATA[Telefonnummer]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.fax">
+				<source><![CDATA[Fax]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_address.web">
+				<source><![CDATA[Website]]></source>
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_address.zip">
 				<source><![CDATA[Zip Code]]></source>
@@ -341,6 +371,9 @@
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.zoom_control_custom">
 				<source><![CDATA[Zoom control custom]]></source>
+			</trans-unit>
+			<trans-unit id="tx_gomapsext_domain_model_map.zoom_control_style">
+				<source><![CDATA[Zoom control style]]></source>
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_domain_model_map.zoom_max">
 				<source><![CDATA[Zoom max]]></source>

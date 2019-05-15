@@ -29,18 +29,18 @@ return [
     ],
     'types' => [
         '0' => [
-            'showitem' => 'title,--palette--;;address,configuration_map,--palette--;;data,
-					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.style,
-					--palette--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.palettes.marker;marker,
+            'showitem' => '--palette--;;address,
+                    --div--;Position,
+					--palette--;;data, configuration_map, --pallette--;;marker,
 					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.info_window,
-					info_window_content, info_window_images, --palette--;;link,
+					info_window_images, --palette--;;link,
 					--palette--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.palettes.interaction;interaction,
 					--div--;LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.others,
 					sys_language_uid, l10n_parent, l10n_diffsource, hidden, --palette--;;time,categories',
         ]
     ],
     'palettes' => [
-        'address' => ['showitem' => 'street, --linebreak--, zip,  city'],
+        'address' => ['showitem' => 'title, company, --linebreak--, name, email, --linebreak--, phonenumber, fax, web, --linebreak--, street, housenumber, zip, city, country, --linebreak--, description'],
         'data' => ['showitem' => 'latitude, longitude, address'],
         'interaction' => ['showitem' => 'open_by_click, close_by_click, opened'],
         'link' => ['showitem' => 'info_window_link'],
@@ -140,12 +140,84 @@ return [
                 'eval' => 'trim,required'
             ],
         ],
+        'subtitle' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.subtitle',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'company' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.company',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'name' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.name',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'email' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.email',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'phonenumber' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.phonenumber',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'fax' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.fax',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'web' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.web',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
         'street' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.street',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'housenumber' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.housenumber',
+            'config' => [
+                'type' => 'input',
+                'size' => 5,
                 'eval' => 'trim'
             ],
         ],
@@ -166,6 +238,31 @@ return [
                 'size' => 30,
                 'eval' => 'trim'
             ],
+        ],
+        'country' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.country',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'description' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps_ext/Resources/Private/Language/locallang_db.xlf:tx_gomapsext_domain_model_address.description',
+            'config' => [
+                'type' => 'text',
+                'cols' => 40,
+                'rows' => 15,
+                'eval' => 'trim',
+                'enableRichtext' => 1,
+                'fieldControl' => [
+                    'fullScreenRichtext' => [
+                        'disabled' => false,
+                    ]
+                ]
+			],
         ],
         'configuration_map' => [
             'exclude' => 0,

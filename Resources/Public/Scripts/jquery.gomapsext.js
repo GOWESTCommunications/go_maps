@@ -14,7 +14,6 @@
             streetviewControl: null,
             fullscreenControl: null,
             zoomControl: null,
-            zoomControlCustom: null,
             defaultType: null,
             mapTypeControl: null,
             mapTypes: null,
@@ -61,10 +60,27 @@
 	        this.route = [];
 	        this.infoWindow = new google.maps.InfoWindow();
 	        this.bounds = new google.maps.LatLngBounds();
-	        this.markers = [];
+            this.markers = [];
 
-	        this.map = new google.maps.Map(document.getElementById(this.gme.mapSettings.id), this._createMapOptions());
+            if (this.gme.mapSettings.mapselector) {
+                this.map = new google.maps.Map(document.getElementById(this.gme.mapSettings.mapselector), this._createMapOptions());
+            } else {
+                this.map = new google.maps.Map(document.getElementById(this.gme.mapSettings.id), this._createMapOptions());
+            }
 
+            if(this.gme.mapSettings.formselector) {
+                $('#' + this.gme.mapSettings.formselector).append($('#' + this.gme.mapSettings.id + '-form'));
+            }
+            if(this.gme.mapSettings.locationlistselector) {
+                $('#' + this.gme.mapSettings.locationlistselector).append($('.gme-addresses'));
+            }
+            if(this.gme.mapSettings.categoryselector) {
+                $('#' + this.gme.mapSettings.categoryselector).append($('.gme-cats'));
+            }
+            if(this.gme.mapSettings.infowindowselector) {
+                $('#' + this.gme.mapSettings.infowindowselector).append($('#' + this.gme.mapSettings.id + '-infowindow'));
+            }
+            
 	        this._initializeCss();
 	        this._initializeData();
 	        this._initializeKmlImport();
@@ -84,26 +100,31 @@
 
 	        this.setCategoriesFromRequest();
             this.focusAddressFromRequest();
-            
-            if(this.gme.mapSettings.zoomControlCustom == 1) {
-                $('.tx-go-maps-ext .js-map').append('<div class="zoomControls" unselectable="on" onselectstart="return false;" onmousedown="return false;"><ul><li>'+
-                '<div id="' + this.gme.mapSettings.id + '-zoomIn' + '"  class="button zoomIn"><span></span></div></li><li>'+
-                '<div id="' + this.gme.mapSettings.id + '-zoomOut' + '" class="button zoomOut"><span></span></div></li></ul></div>'
+
+            if(this.gme.mapSettings.zoomControl == 0 && this.gme.mapSettings.zoomControlConfig) {
+                var idSelector;
+                if(this.gme.mapSettings.selector) {
+                    idSelector = this.gme.mapSettings.selector;
+                } else {
+                    idSelector = this.gme.mapSettings.id;
+                }
+                
+                $('.tx-go-maps-ext #'+ idSelector +'').append('<div class="zoomControls" unselectable="on" onselectstart="return false;" onmousedown="return false;"><ul><li>'+
+                '<div id="' + idSelector + '-zoomIn' + '"  class="button zoomIn"><span></span></div></li><li>'+
+                '<div id="' + idSelector + '-zoomOut' + '" class="button zoomOut"><span></span></div></li></ul></div>'
                 );
 
-                $('#' + this.gme.mapSettings.id + '-zoomIn').on('click',function() {
+                $('#' + idSelector + '-zoomIn').on('click',function() {
                     var zoom = $element.data("map").getZoom();
                     $element.data("map").setZoom(zoom + 1);
                 });
                 
-                $('#' + this.gme.mapSettings.id + '-zoomOut').on('click',function(){
+                $('#' + idSelector + '-zoomOut').on('click',function(){
                     var zoom = $element.data("map").getZoom();
                     $element.data("map").setZoom(zoom - 1);
                 });
             }
             
-            
-
 	        // trigger mapcreated on map
 	        $element.trigger("mapcreated");
 
@@ -195,6 +216,8 @@
         focusAddress: function (addressUid, $element, gme) {
             var _this = this,
                 _map = this.map;
+
+
             $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'block');
             if(gme.mapSettings.infowindowStyle == 1) {
                 $.each(this.markers, function(key, marker) {
@@ -217,7 +240,6 @@
                                 
                                     $('.tx-go-maps-ext').removeClass('infowindowActive');
                                     $(window).trigger('resize');
-            
                                     $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'none');
                                 });
 
@@ -320,6 +342,8 @@
                     title: pointDescription.title
                 },
                 _this = this;
+
+            console.log(pointDescription);
 
             if (pointDescription.marker) {
                 if (pointDescription.imageSize == 1) {
@@ -506,6 +530,7 @@
         },
 
         _initializeCss: function () {
+            console.log(this.element);
             this.element
                 .css("width", this.gme.mapSettings.width)
                 .css("height", this.gme.mapSettings.height);
@@ -518,7 +543,7 @@
             $element.data("map", _map);
 
             // styled map
-            if (gme.mapSettings.styledMapName) {
+            if (gme.mapSettings.styledMapCode) {
                 var myStyle = gme.mapSettings.styledMapCode,
                     styledMapOptions = {
                         name: gme.mapSettings.styledMapName,
@@ -552,7 +577,6 @@
                 streetViewControl: gme.mapSettings.streetviewControl,
                 fullscreenControl: gme.mapSettings.fullscreenControl,
                 zoomControl: gme.mapSettings.zoomControl,
-                zoomControlCustom: gme.mapSettings.zoomControlCustom,
                 mapTypeId: gme.defaultMapTypes[gme.mapSettings.defaultType],
                 mapTypeControl: gme.mapSettings.mapTypeControl,
                 mapTypeControlOptions: {mapTypeIds: gme.mapSettings.mapTypes},
@@ -646,9 +670,9 @@
             var _this = this,
                 gme = this.data,
                 $element = this.element,
-                $myForm = $('#' + gme.mapSettings.id + '-search'),
+                $myForm = $('#' + gme.mapSettings.id + '-form'),
                 searchParameter = this.getURLParameter('sword'),
-                searchIn = $myForm.find('.js-gme-sword').get(0);
+                searchIn = $myForm.find('.js-gme-saddress').get(0);
             
             if(typeof(searchIn) != "undefined") {
                 searchIn.value = searchParameter ? searchParameter : '';
@@ -816,7 +840,7 @@
                 $element = this.element;
 
             // init Route function
-            if (gme.mapSettings.showRoute == 1 || gme.mapSettings.calcRoute == 1) {
+            if (gme.mapSettings.calcRoute == 1) {
                 var panelHtml = $('<div id="dPanel-' + gme.mapSettings.id + '"><\/div>'),
                     directionsService = new google.maps.DirectionsService(),
                     directionsDisplay = new google.maps.DirectionsRenderer();

@@ -15,16 +15,13 @@
                     <span class="title">
                         <span class="icon">Suche</span>
                     </span>
-                    <f:if condition="{map.showForm}">
-                        <f:render partial="Map/Form" arguments="{map:map, request:request, addresses: addresses}"/>
-                    </f:if>
+                    <f:render partial="Map/Form" arguments="{map:map, request:request, addresses: addresses}"/>
                 </div>
             </section>
             <f:if condition="{map.showAddresses}">
                 <div class="locationList">
                     <section>
-                        <span class="close">Neue Suche</span>
-                        <h2>Test Map</h2>
+                        <h2>Addresses</h2>
                         <f:render partial="Map/Addresses" arguments="{map:map, addresses:addresses, request:request, categories: categories}" />
                     </section>
                 </div>
@@ -38,10 +35,11 @@
             <f:render partial="Map/InfoWindowCustom" arguments="{request:request, map:map, settings:settings, addresses:addresses, categories: categories}" />
         </f:if>
         
-        <div class="col-xs-12 col-md-8 col-lg-9 mapWrapper">
-            <div class="js-map" id="gme-{map.uid}"> </div>
-            
-        </div>
+        <f:if condition="!{map.selector}">
+            <div class="col-xs-12 col-md-8 col-lg-9 mapWrapper">
+                <div class="js-map" id="gme-{map.uid}"> </div>
+            </div>
+        </f:if>
     </div>
     <f:render partial="Map/Assign" arguments="{request:request, map:map, settings:settings, addresses:addresses}" />
     

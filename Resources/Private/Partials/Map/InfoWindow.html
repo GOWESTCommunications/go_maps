@@ -2,7 +2,6 @@
 
 <div class="infowindow" id="gme-{map.uid}-infowindow">
     <span class="close">close</span>
-    <f:debug>{address.infoWindowContent}</f:debug>
     <f:if condition="{address.infoWindowImages}">
         <div class="infowindow-image">
             <f:for each="{address.infoWindowImages}" as="image">
@@ -17,7 +16,10 @@
     </f:if>
     <f:if condition="{address.infoWindowContent}">
         <div class="infowindow-content">
-            <f:format.html>{address.infoWindowContent}</f:format.html>
+            <h2>{address.title} / {address.company}</h2>
+            <p>Name: {address.name}, E-Mail: {address.email}, Phone: {address.phonenumber}, Fax: {address.fax}, Web: {address.web}</p>
+            <p>Address: {address.street} {address.housenumber}, {address.zip} {address.city}, {address.country}</p>
+            <f:format.html>{address.description}</f:format.html>
         </div>
     </f:if>
     <f:if condition="{map.showRoute} || {map.calcRoute}">

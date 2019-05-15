@@ -7,7 +7,7 @@
     var gme = new Object();
 
     gme.zoomTypes = new Array(0,1,2);
-    gme.defaultMapTypes = new Array("roadmap", "satellite", "hybrid", "terrain", "{map.styledMapName}");
+    gme.defaultMapTypes = new Array("roadmap", "satellite", "hybrid", "terrain", "{f:if(condition:"{map.styledMapName}", then:"{map.styledMapName}", else:"Styled Map")}");
 
     gme.mapSettings = <f:format.raw>{</f:format.raw>
     id: 'gme-' + {map.uid},
@@ -18,6 +18,11 @@
     zoom: {f:if(condition:"{map.zoom}", then:"{map.zoom}", else:"0")},
     minZoom: {f:if(condition:"{map.zoomMin}", then:"{map.zoomMin}", else:"0")},
     maxZoom: {f:if(condition:"{map.zoomMax}", then:"{map.zoomMax}", else:"0")},
+    mapselector: '{map.mapselector}',
+    formselector: '{map.formselector}',
+    categoryselector: '{map.categoryselector}',
+    locationlistselector: '{map.locationlistselector}',
+    infowindowselector: '{map.infowindowselector}',
     lat: {f:if(condition:"{map.latitude} != 0", then: "{map.latitude}", else:"0")},
     lng: {f:if(condition:"{map.longitude} != 0", then: "{map.longitude}", else:"0")},
     geolocation: {f:if(condition:"{map.geolocation} != 0", then: "1", else:"0")},
@@ -49,8 +54,8 @@
     scaleControl: {f:if(condition:"{map.scaleControl}", then:"1", else:"0")},
     streetviewControl: {f:if(condition:"{map.streetviewControl}", then:"1", else:"0")},
     fullscreenControl: {f:if(condition:"{map.fullscreenControl}", then:"1", else:"0")},
-    zoomControl: {f:if(condition:"{map.zoomControl}", then:"1", else:"0")},
-    zoomControlCustom: {f:if(condition:"{map.zoomControlCustom}", then:"1", else:"0")},
+    zoomControl: {map.zoomControl},
+    zoomControlConfig: {f:if(condition:"{map.zoomControlConfig}", then:"1", else:"0")},
     mapTypeControl: {f:if(condition:"{map.mapTypeControl}", then:"1", else:"0")},
     showRoute: {f:if(condition:"{map.showRoute}", then:"1", else:"0")},
     calcRoute: {f:if(condition:"{map.calcRoute}", then:"1", else:"0")},
@@ -59,7 +64,7 @@
     showForm: {f:if(condition:"{map.showForm}", then:"1", else:"0")},
     showCategories: {f:if(condition:"{map.showCategories}", then:"1", else:"0")},
     logicalAnd: {f:if(condition:"{settings.logicalAnd}", then:"1", else:"0")},
-    styledMapName: '{map.styledMapName}',
+    styledMapName: '{f:if(condition:"{map.styledMapName}", then:"{map.styledMapName}", else:"Styled Map")}',
     <f:if condition="{map.styledMapCode}">
         <f:then>
             styledMapCode: <f:format.html parseFuncTSPath="">{map.styledMapCode}</f:format.html>,
@@ -152,7 +157,13 @@
     gme.ll.submit = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomapsext_partials_map_assign.submit" />";
     gme.ll.noSearchResults = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomapsext_partials_map_assign.noSearchResults" />";
     gme.ll.infoWindowLinkText = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomapsext_partials_map_assign.infoWindowLinkText" />";
-    var $element = jQuery("#" + gme.mapSettings.id);
+    var idSelector;
+    if(gme.mapSettings.mapselector) {
+        idSelector = gme.mapSettings.mapselector;
+    } else {
+        idSelector = gme.mapSettings.id;
+    }
+    var $element = jQuery("#" + idSelector);
     $element.gomapsext(gme);
     if(gme.mapSettings.width.indexOf('%') != -1) {
         jQuery(window).resize(function() {

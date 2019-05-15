@@ -77,11 +77,35 @@ class Map extends AbstractEntity
      */
     protected $zoomMax;
     /**
-     * selector
+     * mapselector
      *
      * @var \string
      */
-    protected $selector;
+    protected $mapselector;
+    /**
+     * formselector
+     *
+     * @var \string
+     */
+    protected $formselector;
+    /**
+     * categoryselector
+     *
+     * @var \string
+     */
+    protected $categoryselector;
+    /**
+     * locationlistselector
+     *
+     * @var \string
+     */
+    protected $locationlistselector;
+     /**
+     * infowindowselector
+     *
+     * @var \string
+     */
+    protected $infowindowselector;
     /**
      * infowindowStyle
      *
@@ -226,13 +250,13 @@ class Map extends AbstractEntity
      *
      * @var boolean
      */
-    protected $zoomControl = false;
+    protected $zoomControlConfig = false;
     /**
-     * zoomControlCustom
+     * zoomControlStyle
      *
-     * @var boolean
+     * @var int
      */
-    protected $zoomControlCustom = false;
+    protected $zoomControl = false;
     /**
      * mapTypeControl
      *
@@ -469,24 +493,108 @@ class Map extends AbstractEntity
     }
 
     /**
-     * Returns the selector
+     * Returns the mapselector
      *
-     * @return \string $selector
+     * @return \string $mapselector
      */
-    public function getSelector()
+    public function getMapselector()
     {
-        return $this->selector;
+        return $this->mapselector;
     }
 
     /**
-     * Sets the selector
+     * Sets the mapselector
      *
-     * @param \string $selector
+     * @param \string $mapselector
      * @return void
      */
-    public function setSelector($selector)
+    public function setMapselector($mapselector)
     {
-        $this->selector = $selector;
+        $this->mapselector = $mapselector;
+    }
+
+    /**
+     * Returns the formselector
+     *
+     * @return \string $formselector
+     */
+    public function getFormselector()
+    {
+        return $this->formselector;
+    }
+
+    /**
+     * Sets the formselector
+     *
+     * @param \string $formselector
+     * @return void
+     */
+    public function setFormselector($formselector)
+    {
+        $this->formselector = $formselector;
+    }
+
+    /**
+     * Returns the categoryselector
+     *
+     * @return \string $categoryselector
+     */
+    public function getCategoryselector()
+    {
+        return $this->categoryselector;
+    }
+
+    /**
+     * Sets the categoryselector
+     *
+     * @param \string $categoryselector
+     * @return void
+     */
+    public function setCategoryselector($categoryselector)
+    {
+        $this->categoryselector = $categoryselector;
+    }
+
+    /**
+     * Returns the locationlistselector
+     *
+     * @return \string $locationlistselector
+     */
+    public function getLocationlistselector()
+    {
+        return $this->locationlistselector;
+    }
+
+    /**
+     * Sets the locationlistselector
+     *
+     * @param \string $locationlistselector
+     * @return void
+     */
+    public function setLocationlistselector($locationlistselector)
+    {
+        $this->locationlistselector = $locationlistselector;
+    }
+
+    /**
+     * Returns the infowindowselector
+     *
+     * @return \string $infowindowselector
+     */
+    public function getInfowindowselector()
+    {
+        return $this->infowindowselector;
+    }
+
+    /**
+     * Sets the infowindowselector
+     *
+     * @param \string $infowindowselector
+     * @return void
+     */
+    public function setInfowindowselector($infowindowselector)
+    {
+        $this->infowindowselector = $infowindowselector;
     }
 
     /**
@@ -1059,65 +1167,54 @@ class Map extends AbstractEntity
     }
 
     /**
+     * Returns the zoomControlConfig
+     *
+     * @return boolean $zoomControlConfig
+     */
+    public function getZoomControlConfig()
+    {
+        return $this->zoomControlConfig;
+    }
+
+    /**
+     * Returns the boolean state of zoomControlConfig
+     *
+     * @return boolean
+     */
+    public function isZoomControlConfig()
+    {
+        return $this->getZoomControlConfig();
+    }
+
+    /**
+     * Sets the zoomControlConfig
+     *
+     * @param boolean $zoomControlConfig
+     * @return void
+     */
+    public function setZoomControlConfig($zoomControlConfig)
+    {
+        $this->zoomControlConfig = $zoomControlConfig;
+    }
+
+    /**
      * Returns the zoomControl
      *
-     * @return boolean $zoomControl
+     * @return int $zoomControl
      */
     public function getZoomControl()
     {
         return $this->zoomControl;
     }
-
-    /**
-     * Returns the boolean state of zoomControl
-     *
-     * @return boolean
-     */
-    public function isZoomControl()
-    {
-        return $this->getZoomControl();
-    }
-
     /**
      * Sets the zoomControl
      *
-     * @param boolean $zoomControl
+     * @param int $zoomControl
      * @return void
      */
     public function setZoomControl($zoomControl)
     {
         $this->zoomControl = $zoomControl;
-    }
-
-    /**
-     * Returns the zoomControlCustom
-     *
-     * @return boolean $zoomControlCustom
-     */
-    public function getZoomControlCustom()
-    {
-        return $this->zoomControlCustom;
-    }
-
-    /**
-     * Returns the boolean state of zoomControlCustom
-     *
-     * @return boolean
-     */
-    public function isZoomControlCustom()
-    {
-        return $this->getZoomControlCustom();
-    }
-
-    /**
-     * Sets the zoomControlCustom
-     *
-     * @param boolean $zoomControlCustom
-     * @return void
-     */
-    public function setZoomControlCustom($zoomControlCustom)
-    {
-        $this->zoomControlCustom = $zoomControlCustom;
     }
 
     /**

@@ -44,11 +44,59 @@ class Address extends AbstractEntity
      */
     protected $title;
     /**
+     * subtitle
+     *
+     * @var \string
+     */
+    protected $subtitle;
+    /**
+     * company
+     *
+     * @var \string
+     */
+    protected $company;
+    /**
+     * name
+     *
+     * @var \string
+     */
+    protected $name;
+    /**
+     * email
+     *
+     * @var \string
+     */
+    protected $email;
+    /**
+     * phonenumber
+     *
+     * @var \string
+     */
+    protected $phonenumber;
+    /**
+     * fax
+     *
+     * @var \string
+     */
+    protected $fax;
+    /**
+     * web
+     *
+     * @var \string
+     */
+    protected $web;
+    /**
      * street
      *
      * @var \string
      */
     protected $street;
+    /**
+     * housenumber
+     *
+     * @var \string
+     */
+    protected $housenumber;
     /**
      * zip
      *
@@ -61,6 +109,12 @@ class Address extends AbstractEntity
      * @var \string
      */
     protected $city;
+    /**
+     * country
+     *
+     * @var \string
+     */
+    protected $country;
     /**
      * configurationMap
      *
@@ -115,6 +169,12 @@ class Address extends AbstractEntity
      * @var \string
      */
     protected $infoWindowContent;
+    /**
+     * description
+     *
+     * @var \string
+     */
+    protected $description;
     /**
      * infoWindowImages
      *
@@ -209,6 +269,151 @@ class Address extends AbstractEntity
     {
         $this->title = $title;
     }
+
+    /**
+     * @return string
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * @param string $subtitle
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+    }
+
+     /**
+     * @return string
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param string $company
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+    }
+
+     /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+     /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+     /**
+     * @return string
+     */
+    public function getPhonenumber()
+    {
+        return $this->phonenumber;
+    }
+
+    /**
+     * @param string $phonenumber
+     */
+    public function setPhonenumber($phonenumber)
+    {
+        $this->phonenumber = $phonenumber;
+    }
+
+     /**
+     * @return string
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+
+    /**
+     * @param string $fax
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWeb()
+    {
+        return $this->web;
+    }
+
+    /**
+     * @param string $web
+     */
+    public function setWeb($web)
+    {
+        $this->web = $web;
+    }
+
+     /**
+     * @return string
+     */
+    public function getHousenumber()
+    {
+        return $this->housenumber;
+    }
+
+    /**
+     * @param string $housenumber
+     */
+    public function setHousenumber($housenumber)
+    {
+        $this->housenumber = $housenumber;
+    }
+
+     /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
 
     /**
      * @return string
@@ -455,6 +660,27 @@ class Address extends AbstractEntity
     public function setInfoWindowContent($infoWindowContent)
     {
         $this->infoWindowContent = $infoWindowContent;
+    }
+
+    /**
+     * Returns the description
+     *
+     * @return \string $description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Sets the description
+     *
+     * @param \string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**

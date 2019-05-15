@@ -156,7 +156,7 @@
 				<source><![CDATA[No results found.]]></source>
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_partials_map_assign.submit">
-				<source><![CDATA[Calculate Route]]></source>
+				<source><![CDATA[Search]]></source>
 			</trans-unit>
 			<trans-unit id="tx_gomapsext_partials_map_assign.submitSearch">
 				<source><![CDATA[Search]]></source>
