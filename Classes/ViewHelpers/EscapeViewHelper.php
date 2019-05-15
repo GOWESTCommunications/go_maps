@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickstorm\GoMapsExt\ViewHelpers;
+namespace Clickstorm\GoMaps\ViewHelpers;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -34,14 +34,14 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * == Examples ==
  *
  * <code title="Default parameters">
- * <gomapsext:format.escape>function('');</gomapsext:format.escape>
+ * <gomaps:format.escape>function('');</gomaps:format.escape>
  * </code>
  * <output>
  * function(\'\');
  * </output>
  *
  * <code title="Inline notation">
- * {some'Text' -> gomapsext:format.escape}
+ * {some'Text' -> gomaps:format.escape}
  * </code>
  * <output>
  * some\'Text\'

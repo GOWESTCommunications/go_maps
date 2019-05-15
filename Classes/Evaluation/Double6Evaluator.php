@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickstorm\GoMapsExt\Evaluation;
+namespace Clickstorm\GoMaps\Evaluation;
 
 /***************************************************************
  *  Copyright notice

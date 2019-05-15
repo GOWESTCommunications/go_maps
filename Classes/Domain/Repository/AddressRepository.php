@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickstorm\GoMapsExt\Domain\Repository;
+namespace Clickstorm\GoMaps\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
@@ -26,7 +26,7 @@ namespace Clickstorm\GoMapsExt\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use Clickstorm\GoMapsExt\Domain\Model\Map;
+use Clickstorm\GoMaps\Domain\Model\Map;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -39,7 +39,7 @@ class AddressRepository extends Repository
     /**
      * Finds all addresses by the specified map or the storage pid
      *
-     * @param \Clickstorm\GoMapsExt\Domain\Model\Map $map The map
+     * @param \Clickstorm\GoMaps\Domain\Model\Map $map The map
      * @param int $pid The Storage Pid
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface The addresses
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException

@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickstorm\GoMapsExt\ViewHelpers;
+namespace Clickstorm\GoMaps\ViewHelpers;
 
 /**
  *  Copyright notice
@@ -34,7 +34,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * == Examples ==
  *
  * <code title="Default parameters">
- * <gomapsext:script>'foo <b>bar</b>.'</gomapsext:script>
+ * <gomaps:script>'foo <b>bar</b>.'</gomaps:script>
  * </code>
  * <output>
  * <script type="text/javascript">
@@ -42,7 +42,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * </script>
  *
  * <code title="Inline notation">
- * {someText -> gomapsext:script}
+ * {someText -> gomaps:script}
  * </code>
  * <output>
  * <script type="text/javascript">

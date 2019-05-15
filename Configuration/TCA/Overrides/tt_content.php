@@ -1,7 +1,7 @@
 <?php
 defined('TYPO3_MODE') or die();
 
-$extKey = 'go_maps_ext';
+$extKey = 'go_maps';
 
 // register plugin
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(

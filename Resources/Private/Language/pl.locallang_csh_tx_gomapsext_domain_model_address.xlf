@@ -2,9 +2,9 @@
 <xliff version="1.0">
 	<file source-language="en" target-language="pl" datatype="plaintext" original="messages" date="2016-08-01T07:19:58Z">
 		<header>
-			<description>Context Sensitive Help (CSH) for table tx_gomapsext_domain_model_address</description>
+			<description>Context Sensitive Help (CSH) for table tx_gomaps_domain_model_address</description>
 			<type>CSH</type>
-			<csh_table>tx_gomapsext_domain_model_address</csh_table>
+			<csh_table>tx_gomaps_domain_model_address</csh_table>
 			<authorName>Marc Hirdes</authorName>
 			<authorEmail>marc_hirdes@gmx.de</authorEmail>
 			<generator>LFEditor</generator>

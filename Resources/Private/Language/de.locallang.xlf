@@ -12,59 +12,59 @@
 				<source><![CDATA[No addresses were found.]]></source>
 				<target><![CDATA[Es konnten keine Adressen gefunden werden.]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.travel_mode.0" approved="yes">
+			<trans-unit id="tx_gomaps_domain_model_map.travel_mode.0" approved="yes">
 				<source><![CDATA[Driving]]></source>
 				<target><![CDATA[Mit dem Auto]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.travel_mode.2" approved="yes">
+			<trans-unit id="tx_gomaps_domain_model_map.travel_mode.2" approved="yes">
 				<source><![CDATA[Bicycling]]></source>
 				<target><![CDATA[Mit dem Fahrrad]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.travel_mode.3" approved="yes">
+			<trans-unit id="tx_gomaps_domain_model_map.travel_mode.3" approved="yes">
 				<source><![CDATA[Transit]]></source>
 				<target><![CDATA[Öffentliche Verkehrsmittel]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.travel_mode.4" approved="yes">
+			<trans-unit id="tx_gomaps_domain_model_map.travel_mode.4" approved="yes">
 				<source><![CDATA[Walking]]></source>
 				<target><![CDATA[Zu Fuß]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.unit_system.2" approved="yes">
+			<trans-unit id="tx_gomaps_domain_model_map.unit_system.2" approved="yes">
 				<source><![CDATA[km]]></source>
 				<target><![CDATA[km]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_domain_model_map.unit_system.3" approved="yes">
+			<trans-unit id="tx_gomaps_domain_model_map.unit_system.3" approved="yes">
 				<source><![CDATA[mil]]></source>
 				<target><![CDATA[mil]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_flexform_settings" approved="yes">
+			<trans-unit id="tx_gomaps_flexform_settings" approved="yes">
 				<source><![CDATA[Settings]]></source>
 				<target><![CDATA[Einstellungen]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_flexform_settings.map" approved="yes">
+			<trans-unit id="tx_gomaps_flexform_settings.map" approved="yes">
 				<source><![CDATA[Map]]></source>
 				<target><![CDATA[Karte]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_partials_map_assign.alert" approved="yes">
+			<trans-unit id="tx_gomaps_partials_map_assign.alert" approved="yes">
 				<source><![CDATA[Please enter a valid address.]]></source>
 				<target><![CDATA[Bitte geben Sie eine gültige Adresse ein.]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_partials_map_assign.infoWindowLinkText" approved="yes">
+			<trans-unit id="tx_gomaps_partials_map_assign.infoWindowLinkText" approved="yes">
 				<source><![CDATA[Calculate Route]]></source>
 				<target><![CDATA[Route berechnen]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_partials_map_assign.noSearchResults" approved="yes">
+			<trans-unit id="tx_gomaps_partials_map_assign.noSearchResults" approved="yes">
 				<source><![CDATA[No results found.]]></source>
 				<target><![CDATA[Die Suche liefert keine Ergebnisse.]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_partials_map_assign.submit" approved="yes">
+			<trans-unit id="tx_gomaps_partials_map_assign.submit" approved="yes">
 				<source><![CDATA[Calculate Route]]></source>
 				<target><![CDATA[Route berechnen]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_partials_map_assign.submitSearch" approved="yes">
+			<trans-unit id="tx_gomaps_partials_map_assign.submitSearch" approved="yes">
 				<source><![CDATA[Search]]></source>
 				<target><![CDATA[Suchen]]></target>
 			</trans-unit>
-			<trans-unit id="tx_gomapsext_templates_map_preview.link" approved="yes">
+			<trans-unit id="tx_gomaps_templates_map_preview.link" approved="yes">
 				<source><![CDATA[show map]]></source>
 				<target><![CDATA[Karte anzeigen]]></target>
 			</trans-unit>

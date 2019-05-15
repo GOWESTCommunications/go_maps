@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickstorm\GoMapsExt\Domain\Model;
+namespace Clickstorm\GoMaps\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -121,7 +121,7 @@ class Map extends AbstractEntity
     /**
      * addresses
      *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Clickstorm\GoMapsExt\Domain\Model\Address>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Clickstorm\GoMaps\Domain\Model\Address>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $addresses;
@@ -600,7 +600,7 @@ class Map extends AbstractEntity
     /**
      * Adds a Address
      *
-	 * @param \Clickstorm\GoMapsExt\Domain\Model\Address $address
+	 * @param \Clickstorm\GoMaps\Domain\Model\Address $address
      * @return void
      */
     public function addAddress(Address $address)
@@ -611,7 +611,7 @@ class Map extends AbstractEntity
     /**
      * Removes a Address
      *
-	 * @param \Clickstorm\GoMapsExt\Domain\Model\Address $addressToRemove The Address to be removed
+	 * @param \Clickstorm\GoMaps\Domain\Model\Address $addressToRemove The Address to be removed
      * @return void
      */
     public function removeAddress(Address $addressToRemove)
@@ -622,7 +622,7 @@ class Map extends AbstractEntity
     /**
      * Returns the addresses
      *
-     * @return ObjectStorage<\Clickstorm\GoMapsExt\Domain\Model\Address> $addresses
+     * @return ObjectStorage<\Clickstorm\GoMaps\Domain\Model\Address> $addresses
      */
     public function getAddresses()
     {
@@ -632,7 +632,7 @@ class Map extends AbstractEntity
     /**
      * Sets the addresses
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Clickstorm\GoMapsExt\Domain\Model\Address> $addresses
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Clickstorm\GoMaps\Domain\Model\Address> $addresses
      * @return void
      */
     public function setAddresses(ObjectStorage $addresses)
@@ -1481,7 +1481,7 @@ class Map extends AbstractEntity
         $travelModes = [];
         for ($i = 0; $i <= 4; $i++) {
             $travelModes[$i] = LocalizationUtility::translate(
-                'tx_gomapsext_domain_model_map.travel_mode.' . $i,
+                'tx_gomaps_domain_model_map.travel_mode.' . $i,
                 'go_maps_ext'
             );
         }
@@ -1498,7 +1498,7 @@ class Map extends AbstractEntity
     {
         for ($i = 2; $i <= 3; $i++) {
             $unitSystems[$i] = LocalizationUtility::translate(
-                'tx_gomapsext_domain_model_map.unit_system.' . $i,
+                'tx_gomaps_domain_model_map.unit_system.' . $i,
                 'go_maps_ext'
             );
         }

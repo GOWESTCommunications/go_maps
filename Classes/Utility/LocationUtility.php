@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickstorm\GoMapsExt\Utility;
+namespace Clickstorm\GoMaps\Utility;
 
 /***************************************************************
  *  Copyright notice
@@ -304,7 +304,7 @@ EOT;
 
     /**
      * Get definitive TypoScript Settings from
-     * plugin.tx_gomapsext.settings.
+     * plugin.tx_gomaps.settings.
      *
      * @return array
      */
@@ -314,7 +314,7 @@ EOT;
             ->get(ConfigurationManagerInterface::class)
             ->getConfiguration(
                 ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
-            )['plugin.']['tx_gomapsext.']['settings.'] ?? [];
+            )['plugin.']['tx_gomaps.']['settings.'] ?? [];
 
     }
 }

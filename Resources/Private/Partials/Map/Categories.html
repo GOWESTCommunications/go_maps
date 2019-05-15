@@ -2,7 +2,7 @@
 <ul class="gme-cats">
 	<f:for each="{categories}" as="category">
 		<li>
-			<f:form.checkbox id="gme-cat-{category.uid}" name="tx_csgomapsext_show[cat]" value="{category.uid}" class="js-gme-cat" title="{category.title}"/>
+			<f:form.checkbox id="gme-cat-{category.uid}" name="tx_csgomaps_show[cat]" value="{category.uid}" class="js-gme-cat" title="{category.title}"/>
 			<label for="gme-cat-{category.uid}">{category.title}</label>
 		</li>
 	</f:for>

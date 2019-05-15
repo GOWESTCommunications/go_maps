@@ -1,7 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true"
-      xmlns:gomapsext="http://typo3.org/ns/Clickstorm/GoMapsExt/ViewHelpers">
+      xmlns:gomaps="http://typo3.org/ns/Clickstorm/GoMaps/ViewHelpers">
 
-<gomapsext:script>
+<gomaps:script>
     (function ($, window, document, undefined) {
     $(function () {
     var gme = new Object();
@@ -11,7 +11,7 @@
 
     gme.mapSettings = <f:format.raw>{</f:format.raw>
     id: 'gme-' + {map.uid},
-    title: '<gomapsext:escape>{map.title}</gomapsext:escape>',
+    title: '<gomaps:escape>{map.title}</gomaps:escape>',
     width: '{map.width}',
     height: '{map.height}',
     infowindowStyle: '{map.infowindowStyle}',
@@ -91,10 +91,10 @@
     <f:for each="{addresses}" as="address" iteration="i">
         gme.addresses[{i.index}]  = <f:format.raw>{</f:format.raw>
         uid: {address.uid},
-        title: '<gomapsext:escape>{address.title}</gomapsext:escape>',
+        title: '<gomaps:escape>{address.title}</gomaps:escape>',
         latitude: {address.latitude -> f:format.number(decimals:6, thousandsSeparator:'')},
         longitude: {address.longitude -> f:format.number(decimals:6, thousandsSeparator:'')},
-        address: '<gomapsext:escape>{address.address}</gomapsext:escape>',
+        address: '<gomaps:escape>{address.address}</gomaps:escape>',
         <f:if condition="{address.marker}">
             <f:then>
                 <f:if condition="{address.imageSize}">
@@ -128,7 +128,7 @@
 
         imageWidth: {address.imageWidth},
         imageHeight: {address.imageHeight},
-        infoWindowContent: '<f:format.raw><gomapsext:escape><f:render partial="Map/InfoWindow" arguments="{_all}" /></gomapsext:escape></f:format.raw>',
+        infoWindowContent: '<f:format.raw><gomaps:escape><f:render partial="Map/InfoWindow" arguments="{_all}" /></gomaps:escape></f:format.raw>',
         infoWindowLink: {address.infoWindowLink},
         <f:if condition="{settings.infoWindow.openByClick}">
             <f:then>
@@ -153,10 +153,10 @@
     console.log(gme.addresses);
 
     gme.ll = {};
-    gme.ll.alert = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomapsext_partials_map_assign.alert" />";
-    gme.ll.submit = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomapsext_partials_map_assign.submit" />";
-    gme.ll.noSearchResults = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomapsext_partials_map_assign.noSearchResults" />";
-    gme.ll.infoWindowLinkText = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomapsext_partials_map_assign.infoWindowLinkText" />";
+    gme.ll.alert = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomaps_partials_map_assign.alert" />";
+    gme.ll.submit = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomaps_partials_map_assign.submit" />";
+    gme.ll.noSearchResults = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomaps_partials_map_assign.noSearchResults" />";
+    gme.ll.infoWindowLinkText = "<f:translate key="LLL:EXT:go_maps_ext/Resources/Private/Language/locallang.xlf:tx_gomaps_partials_map_assign.infoWindowLinkText" />";
     var idSelector;
     if(gme.mapSettings.mapselector) {
         idSelector = gme.mapSettings.mapselector;
@@ -164,7 +164,7 @@
         idSelector = gme.mapSettings.id;
     }
     var $element = jQuery("#" + idSelector);
-    $element.gomapsext(gme);
+    $element.gomaps(gme);
     if(gme.mapSettings.width.indexOf('%') != -1) {
         jQuery(window).resize(function() {
             $element.trigger('mapresize');
@@ -173,5 +173,5 @@
 
     }); // end of closure
     })(jQuery, window, document);
-</gomapsext:script>
+</gomaps:script>
 </html>

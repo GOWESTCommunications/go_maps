@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickstorm\GoMapsExt\Domain\Repository;
+namespace Clickstorm\GoMaps\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice

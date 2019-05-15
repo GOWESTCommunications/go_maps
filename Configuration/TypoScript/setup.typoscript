@@ -1,31 +1,31 @@
-page.includeCSS.tx_gomapsext = EXT:go_maps_ext/Resources/Public/Styles/layout.scss
+page.includeCSS.tx_gomaps = EXT:go_maps_ext/Resources/Public/Styles/layout.scss
 
-plugin.tx_gomapsext {
+plugin.tx_gomaps {
 	view {
 		templateRootPaths {
-			10 = {$plugin.tx_gomapsext.view.templateRootPath}
+			10 = {$plugin.tx_gomaps.view.templateRootPath}
 		}
 		partialRootPaths {
-			10 = {$plugin.tx_gomapsext.view.partialRootPath}
+			10 = {$plugin.tx_gomaps.view.partialRootPath}
 		}
 		layoutRootPaths {
-			10 = {$plugin.tx_gomapsext.view.layoutRootPath}
+			10 = {$plugin.tx_gomaps.view.layoutRootPath}
 		}
 	}
 	settings {
-		storagePid = {$plugin.tx_gomapsext.settings.storagePid}
-		logicalAnd = {$plugin.tx_gomapsext.settings.logicalAnd}
-		apiKey = {$plugin.tx_gomapsext.settings.apiKey}
-		googleMapsLibrary = {$plugin.tx_gomapsext.settings.googleMapsLibrary}
+		storagePid = {$plugin.tx_gomaps.settings.storagePid}
+		logicalAnd = {$plugin.tx_gomaps.settings.logicalAnd}
+		apiKey = {$plugin.tx_gomaps.settings.apiKey}
+		googleMapsLibrary = {$plugin.tx_gomaps.settings.googleMapsLibrary}
 		infoWindow {
-			openByClick = {$plugin.tx_gomapsext.settings.infoWindow.openByClick}
-			closeByClick = {$plugin.tx_gomapsext.settings.infoWindow.closeByClick}
-			imageMaxWidth = {$plugin.tx_gomapsext.settings.infoWindow.imageMaxWidth}
+			openByClick = {$plugin.tx_gomaps.settings.infoWindow.openByClick}
+			closeByClick = {$plugin.tx_gomaps.settings.infoWindow.closeByClick}
+			imageMaxWidth = {$plugin.tx_gomaps.settings.infoWindow.imageMaxWidth}
 		}
 		preview {
-			enabled = {$plugin.tx_gomapsext.settings.preview.enabled}
-			image = {$plugin.tx_gomapsext.settings.preview.image}
-			setCookieToShowMapAlways = {$plugin.tx_gomapsext.settings.preview.setCookieToShowMapAlways}
+			enabled = {$plugin.tx_gomaps.settings.preview.enabled}
+			image = {$plugin.tx_gomaps.settings.preview.image}
+			setCookieToShowMapAlways = {$plugin.tx_gomaps.settings.preview.setCookieToShowMapAlways}
 		}
 		language < config.language
 	}
@@ -39,7 +39,7 @@ plugin.tx_gomapsext {
 }
 
 config.tx_extbase.persistence.classes {
-	Clickstorm\GoMapsExt\Domain\Model\Category {
+	Clickstorm\GoMaps\Domain\Model\Category {
 		mapping {
 			tableName = sys_category
 		}

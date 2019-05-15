@@ -1,5 +1,5 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true"
-	  xmlns:gomapsext="http://typo3.org/ns/Clickstorm/GoMapsExt/ViewHelpers">
+	  xmlns:gomaps="http://typo3.org/ns/Clickstorm/GoMaps/ViewHelpers">
 	
 <f:form id="gme-{map.uid}-form" method="post">
 	<f:if condition="{map.calcRoute} || {map.markerSearch}">
@@ -37,6 +37,6 @@
 		<f:form.select name="unitsystem" value="{f:if(condition:request.unitsystem,then:request.unitsystem,else:2)}"
 					   class="js-gme-unitsystem" options="{map.unitSystems}" size="1" />
 	</f:if>
-	<f:form.submit class="js-gme-submit" name="submit" value="{f:translate(key:'tx_gomapsext_partials_map_assign.submit')}" />
+	<f:form.submit class="js-gme-submit" name="submit" value="{f:translate(key:'tx_gomaps_partials_map_assign.submit')}" />
 </f:form>
 </html>

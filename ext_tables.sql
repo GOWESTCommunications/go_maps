@@ -1,7 +1,7 @@
 #
-# Table structure for table 'tx_gomapsext_domain_model_address'
+# Table structure for table 'tx_gomaps_domain_model_address'
 #
-CREATE TABLE tx_gomapsext_domain_model_address (
+CREATE TABLE tx_gomaps_domain_model_address (
 	map int(11) unsigned DEFAULT '0' NOT NULL,
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
 	
@@ -36,10 +36,10 @@ CREATE TABLE tx_gomapsext_domain_model_address (
 );
 
 #
-# Table structure for table 'tx_gomapsext_domain_model_map'
+# Table structure for table 'tx_gomaps_domain_model_map'
 #
-CREATE TABLE tx_gomapsext_domain_model_map (
-  title varchar(255) DEFAULT '' NOT NULL,
+CREATE TABLE tx_gomaps_domain_model_map (
+  	title varchar(255) DEFAULT '' NOT NULL,
 	width varchar(11) DEFAULT '' NOT NULL,
 	height varchar(11) DEFAULT '' NOT NULL,
 	zoom int(11) DEFAULT '0' NOT NULL,
@@ -88,9 +88,9 @@ CREATE TABLE tx_gomapsext_domain_model_map (
 );
 
 #
-# Table structure for table 'tx_gomapsext_map_address_mm'
+# Table structure for table 'tx_gomaps_map_address_mm'
 #
-CREATE TABLE tx_gomapsext_map_address_mm (
+CREATE TABLE tx_gomaps_map_address_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,

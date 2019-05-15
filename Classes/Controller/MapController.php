@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickstorm\GoMapsExt\Controller;
+namespace Clickstorm\GoMaps\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -27,7 +27,7 @@ namespace Clickstorm\GoMapsExt\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-use Clickstorm\GoMapsExt\Domain\Model\Map;
+use Clickstorm\GoMaps\Domain\Model\Map;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -45,7 +45,7 @@ class MapController extends ActionController
     /**
      * mapRepository
      *
-     * @var \Clickstorm\GoMapsExt\Domain\Repository\MapRepository
+     * @var \Clickstorm\GoMaps\Domain\Repository\MapRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $mapRepository;
@@ -53,7 +53,7 @@ class MapController extends ActionController
     /**
      * addressRepository
      *
-     * @var \Clickstorm\GoMapsExt\Domain\Repository\AddressRepository
+     * @var \Clickstorm\GoMaps\Domain\Repository\AddressRepository
      * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $addressRepository;
@@ -105,14 +105,14 @@ class MapController extends ActionController
 
         if ($extConf['include_manually'] !== '1') {
             $scripts[] = $pathPrefix . 'Resources/Public/Scripts/markerclusterer_compiled.js';
-            $scripts[] = $pathPrefix . 'Resources/Public/Scripts/jquery.gomapsext.js';
+            $scripts[] = $pathPrefix . 'Resources/Public/Scripts/jquery.gomaps.js';
 
             if($this->settings['preview']['setCookieToShowMapAlways']) {
                 $scripts[] = $pathPrefix . 'Resources/Public/Scripts/jquery.cookie.js';
             }
 
             if($this->settings['preview']['enabled']) {
-                $scripts[] = $pathPrefix . 'Resources/Public/Scripts/jquery.gomapsext.preview.js';
+                $scripts[] = $pathPrefix . 'Resources/Public/Scripts/jquery.gomaps.preview.js';
             }
 
             foreach ($scripts as $script) {
@@ -150,9 +150,9 @@ class MapController extends ActionController
         // get categories
         if ($map->isShowCategories()) {
             foreach ($addresses as $address) {
-                /* @var \Clickstorm\GoMapsExt\Domain\Model\Address $address */
+                /* @var \Clickstorm\GoMaps\Domain\Model\Address $address */
                 $addressCategories = $address->getCategories();
-                /* @var \Clickstorm\GoMapsExt\Domain\Model\Category $addressCategory */
+                /* @var \Clickstorm\GoMaps\Domain\Model\Category $addressCategory */
                 foreach ($addressCategories as $addressCategory) {
                     $categoriesArray[$addressCategory->getUid()] = $addressCategory;
                 }
