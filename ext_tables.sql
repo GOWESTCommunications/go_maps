@@ -2,7 +2,6 @@
 # Table structure for table 'tx_gomaps_domain_model_address'
 #
 CREATE TABLE tx_gomaps_domain_model_address (
-	uid int(11) NOT NULL auto_increment,
 	map int(11) unsigned DEFAULT '0' NOT NULL,
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
 	
@@ -40,7 +39,6 @@ CREATE TABLE tx_gomaps_domain_model_address (
 # Table structure for table 'tx_gomaps_domain_model_map'
 #
 CREATE TABLE tx_gomaps_domain_model_map (
-	uid int(11) NOT NULL auto_increment,
   	title varchar(255) DEFAULT '' NOT NULL,
 	width varchar(11) DEFAULT '' NOT NULL,
 	height varchar(11) DEFAULT '' NOT NULL,
