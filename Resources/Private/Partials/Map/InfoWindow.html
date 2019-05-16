@@ -19,6 +19,9 @@
         <p>Name: {address.name}, E-Mail: {address.email}, Phone: {address.phonenumber}, Fax: {address.fax}, Web: {address.web}</p>
         <p>Address: {address.street} {address.housenumber}, {address.zip} {address.city}, {address.country}</p>
         <f:format.html>{address.description}</f:format.html>
+        <f:for each="{address.categories}" as="category">
+            {category.title}
+        </f:for>
     </div>
     <f:if condition="{map.showRoute} || {map.calcRoute}">
         <f:comment>Container for route description</f:comment>
