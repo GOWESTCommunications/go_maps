@@ -2,9 +2,9 @@
  * Created by mhirdes on 27.11.13.
  */
 (function ($) {
-    var GoMapsExt = window.GoMapsExt = window.GoMapsExt || {};
+    var GoMaps = window.GoMaps = window.GoMaps || {};
 
-    GoMapsExt.Data = {
+    GoMaps.Data = {
         mapSettings: {
             markerSearch: null,
             defaultZoom: null,
@@ -40,10 +40,10 @@
      * Controller for Map functionality
      *
      * @param {HTMLElement} element
-     * @param {GoMapsExt.Data} gme
+     * @param {GoMaps.Data} gme
      * @constructor
      */
-    GoMapsExt.Controller = function (element, gme) {
+    GoMaps.Controller = function (element, gme) {
         this.element = $(element);
         this.gme = gme;
         this.data = gme;
@@ -53,7 +53,7 @@
         }
     };
 
-    GoMapsExt.Controller.prototype = {
+    GoMaps.Controller.prototype = {
 
         initialize: function() {
             var $element = this.element;
@@ -168,7 +168,7 @@
 
         setCategoriesFromRequest: function () {
             // set categories
-            var getCats = this.getURLParameter('tx_gomapsext_show\\[cat\\]');
+            var getCats = this.getURLParameter('tx_gomaps_show\\[cat\\]');
             if (getCats) {
                 getCats = getCats.split(",");
                 this.setCategories(getCats);
@@ -182,7 +182,7 @@
         },
 
         focusAddressFromRequest: function () {
-            var getAddress = this.getURLParameter('tx_gomapsext_show\\[address\\]'),
+            var getAddress = this.getURLParameter('tx_gomaps_show\\[address\\]'),
                 $element = this.element,
                 gme = this.data;
             if (getAddress) {
@@ -272,7 +272,7 @@
         },
 
         /**
-         * decode URL Parameter go_maps_ext[cat]
+         * decode URL Parameter go_maps[cat]
          *
          * @param name
          * @returns {string|null}
@@ -1036,10 +1036,10 @@
     };
 
     // create a new Google Map
-    $.fn.gomapsext = function (gme) {
+    $.fn.gomaps = function (gme) {
         var $element = $(this);
-        if (!$element.data('gomapsextcontroller')) {
-            $element.data('gomapsextcontroller', new GoMapsExt.Controller($element, gme));
+        if (!$element.data('gomapscontroller')) {
+            $element.data('gomapscontroller', new GoMaps.Controller($element, gme));
         }
     };
 }(jQuery));

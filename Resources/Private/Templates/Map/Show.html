@@ -7,7 +7,7 @@
 <f:section name="Main">
     <div class="row">
         <f:debug>{map}</f:debug>
-        <div class="col-xs-12 col-md-4 col-lg-3 leftSide">
+        <div class="col-xs-12 col-md-6">
             <section>
                 <h2>Test Map</h2>
                 <h3>Google Maps Test</h3>
@@ -36,7 +36,7 @@
         </f:if>
         
         <f:if condition="!{map.selector}">
-            <div class="col-xs-12 col-md-8 col-lg-9 mapWrapper">
+            <div class="col-xs-12 col-md-12 mapWrapper">
                 <div class="js-map" id="gme-{map.uid}"> </div>
             </div>
         </f:if>
