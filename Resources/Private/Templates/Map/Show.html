@@ -8,16 +8,6 @@
     <div class="row">
         <f:debug>{map}</f:debug>
         <div class="col-xs-12 col-md-6">
-            <section>
-                <h2>Test Map</h2>
-                <h3>Google Maps Test</h3>
-                <div class="formcontainer">
-                    <span class="title">
-                        <span class="icon">Suche</span>
-                    </span>
-                    <f:render partial="Map/Form" arguments="{map:map, request:request, addresses: addresses}"/>
-                </div>
-            </section>
             <f:if condition="{map.showAddresses}">
                 <div class="locationList">
                     <section>
@@ -37,6 +27,7 @@
         
         <f:if condition="!{map.selector}">
             <div class="col-xs-12 col-md-12 mapWrapper">
+                <f:render partial="Map/Form" arguments="{map:map, request:request, addresses: addresses}"/>
                 <div class="js-map" id="gme-{map.uid}"> </div>
             </div>
         </f:if>

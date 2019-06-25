@@ -57,8 +57,8 @@
 				<target><![CDATA[Die Suche liefert keine Ergebnisse.]]></target>
 			</trans-unit>
 			<trans-unit id="tx_gomaps_partials_map_assign.submit" approved="yes">
-				<source><![CDATA[Calculate Route]]></source>
-				<target><![CDATA[Route berechnen]]></target>
+				<source><![CDATA[Search]]></source>
+				<target><![CDATA[Suchen]]></target>
 			</trans-unit>
 			<trans-unit id="tx_gomaps_partials_map_assign.submitSearch" approved="yes">
 				<source><![CDATA[Search]]></source>
