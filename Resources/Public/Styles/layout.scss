@@ -3,6 +3,18 @@
 @import "typo3conf/ext/gowest_theme/Resources/Public/Sass/mixins/gowest";
 
 
+.tx-go-maps form {
+    position: absolute;
+    z-index: 10;
+    margin: 40px 20px;
+
+    input.js-gme-saddress {
+        float: left;
+    }
+
+}
+
+
 
 
 .zoomControls {
