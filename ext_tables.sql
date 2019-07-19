@@ -8,6 +8,7 @@ CREATE TABLE tx_gomaps_domain_model_address (
 	title varchar(255) DEFAULT '' NOT NULL,
 	subtitle varchar(255) DEFAULT '' NOT NULL,
 	company varchar(255) DEFAULT '' NOT NULL,
+	kundennummer varchar(255) DEFAULT '' NOT NULL,
 	name varchar(255) DEFAULT '' NOT NULL,
 	email varchar(255) DEFAULT '' NOT NULL,
 	phonenumber varchar(255) DEFAULT '' NOT NULL,

@@ -147,6 +147,7 @@ class MapController extends ActionController
             $addresses = $this->addressRepository->findAllAddresses($map, $pid);
         }
 
+
         // get categories
         if ($map->isShowCategories()) {
             foreach ($addresses as $address) {

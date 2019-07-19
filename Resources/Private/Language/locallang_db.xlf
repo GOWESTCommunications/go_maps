@@ -108,6 +108,9 @@
 			<trans-unit id="tx_gomaps_domain_model_address.company">
 				<source><![CDATA[Firma]]></source>
 			</trans-unit>
+			<trans-unit id="tx_gomaps_domain_model_address.kundennummer">
+				<source><![CDATA[Kundennummer]]></source>
+			</trans-unit>
 			<trans-unit id="tx_gomaps_domain_model_address.name">
 				<source><![CDATA[Name]]></source>
 			</trans-unit>

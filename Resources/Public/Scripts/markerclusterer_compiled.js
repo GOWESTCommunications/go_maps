@@ -83,7 +83,7 @@ function MarkerClusterer(map, opt_markers, opt_options) {
      */
     this.clusters_ = [];
   
-    this.sizes = [53, 56, 66, 78, 90];
+    this.sizes = [53];
   
     /**
      * @private
@@ -1254,7 +1254,7 @@ function MarkerClusterer(map, opt_markers, opt_options) {
           this.height_ + 'px; width:' + this.width_ + 'px; text-align:center;');
     }
   
-    var txtColor = this.textColor_ ? this.textColor_ : 'black';
+    var txtColor = this.textColor_ ? this.textColor_ : 'white';
     var txtSize = this.textSize_ ? this.textSize_ : 11;
   
     style.push('cursor:pointer; top:' + pos.y + 'px; left:' +

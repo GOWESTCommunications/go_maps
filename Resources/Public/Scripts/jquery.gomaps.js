@@ -109,7 +109,7 @@
                     idSelector = this.gme.mapSettings.id;
                 }
                 
-                $('.tx-go-maps-ext #'+ idSelector +'').append('<div class="zoomControls" unselectable="on" onselectstart="return false;" onmousedown="return false;"><ul><li>'+
+                $('.tx-go-maps #'+ idSelector +'').append('<div class="zoomControls" unselectable="on" onselectstart="return false;" onmousedown="return false;"><ul><li>'+
                 '<div id="' + idSelector + '-zoomIn' + '"  class="button zoomIn"><span></span></div></li><li>'+
                 '<div id="' + idSelector + '-zoomOut' + '" class="button zoomOut"><span></span></div></li></ul></div>'
                 );
@@ -227,23 +227,39 @@
                             if($('#' + gme.mapSettings.id + '-infowindow').length) {
                                 if(marker.infoWindowImage) {
                                     $('#' + gme.mapSettings.id + '-infowindow .infowindow-image').html(marker.infoWindowImage);
+
                                 } else {
-                                    $('#' + gme.mapSettings.id + '-infowindow .infowindow-image').html('');
+                                    $('#' + gme.mapSettings.id + '-infowindow .infowindow-image').html("");  
                                 }
                                 $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').html(marker.infoWindowContent);
                                 $('#' + gme.mapSettings.id + '-infowindow').addClass('open');
+                                $('.tx-go-maps .leftSide').removeClass('open');
+
+                                setTimeout(function() {
+                                    $('.tx-go-maps .infowindow .infowindow .infowindow-content').append($('.routeLink'));
+                                }, 300);
+
+                                $('.tx-go-maps .formcontainer form .back').on('click', function() {
+                                    $('.locationList').addClass('act');
+                                    $('.tx-go-maps .infowindow').removeClass('open');
+                                });
 
                                 $('#' + gme.mapSettings.id + '-infowindow .close').on('click', function() {
                                     if(typeof(window.goTrackEvent) == 'function') {
                                         window.goTrackEvent('gmap - close info window', 'click',  ' - "' + marker.title + '"');
                                     }
                                 
-                                    $('.tx-go-maps-ext').removeClass('infowindowActive');
+                                    //$('.tx-go-maps').removeClass('infowindowActive');
                                     $(window).trigger('resize');
                                     $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'none');
+                                    $('#' + gme.mapSettings.id + '-infowindow').removeClass('open');
                                 });
+                                if($('.tx-go-maps .infowindow .infowindow-content .infowindow .infowindow-image').length <= 0) {
+                                    $('.tx-go-maps .infowindow .infowindow-content .infowindow .infowindow-content').addClass('no-img');
+                                }
 
                             } else {
+                                
                                 marker.infoWindow.setContent(marker.infoWindowContent);
                                 marker.infoWindow.open(_this.map, marker);
                             }
@@ -343,8 +359,6 @@
                 },
                 _this = this;
 
-            console.log(pointDescription);
-
             if (pointDescription.marker) {
                 if (pointDescription.imageSize == 1) {
                     var Icon = {
@@ -385,7 +399,10 @@
                 var infoWindowContent = pointDescription.infoWindowContent;
                 if (pointDescription.infoWindowLink > 0) {
                     var daddr = (pointDescription.infoWindowLink == 2) ? pointDescription.latitude + ", " + pointDescription.longitude : pointDescription.address;
-                    infoWindowContent += '<p class="routeLink"><a href="//www.google.com/maps/dir/?api=1&destination=' + encodeURI(daddr) + '" target="_blank">' + gme.ll.infoWindowLinkText + '<\/a><\/p>';
+                    infoWindowContent += '<p class="routeLink btn"><a href="//www.google.com/maps/dir/?api=1&destination=' + encodeURI(daddr) + '" target="_blank">' + gme.ll.infoWindowLinkText + '<\/a><\/p>';
+                    setTimeout(function() {
+                        $('.tx-go-maps .infowindow .infowindow .infowindow-content').append($('.routeLink'));
+                    }, 300);
                 }
                 //infoWindowContent = '<div class="gme-info-window">' + infoWindowContent + '</div>';
 
@@ -400,7 +417,7 @@
                                 window.goTrackEvent('gmap - open info window', 'click',  '"' + marker.title + '"');
                             }
 
-                            $('.tx-go-maps-ext').addClass('infowindowActive');
+                            //$('.tx-go-maps').addClass('infowindowActive');
                             $(window).trigger('resize');
                             
                             _this.focusAddress(pointDescription.uid, $element, gme);
@@ -428,7 +445,7 @@
                             window.goTrackEvent('gmap - close info window', 'mouseout',  ' - "' + marker.title + '"');
                         }
                     
-                        $('.tx-go-maps-ext').removeClass('infowindowActive');
+                        //$('.tx-go-maps').removeClass('infowindowActive');
                         $(window).trigger('resize');
 
                         infoWindow.close();
@@ -444,13 +461,15 @@
                             window.goTrackEvent('gmap - open info window', 'initialOpen',  '"' + pointDescription.title + '"');
                         }
 
-                        $('.tx-go-maps-ext').addClass('infowindowActive');
+                        //$('.tx-go-maps').addClass('infowindowActive');
                         $(window).trigger('resize');
+                        
                         
                         _this.focusAddress(pointDescription.uid, $element, gme);
                     });
                     //gme.infoWindow = marker.getPosition();
                 }
+
 
                 infoWindow.setContent(infoWindowContent);
                 marker.infoWindowContent = infoWindowContent;
@@ -530,7 +549,6 @@
         },
 
         _initializeCss: function () {
-            console.log(this.element);
             this.element
                 .css("width", this.gme.mapSettings.width)
                 .css("height", this.gme.mapSettings.height);
@@ -673,10 +691,17 @@
                 $myForm = $('#' + gme.mapSettings.id + '-form'),
                 searchParameter = this.getURLParameter('sword'),
                 searchIn = $myForm.find('.js-gme-saddress').get(0);
+
+                console.log('search init');
+
+                
+
             
             if(typeof(searchIn) != "undefined") {
                 searchIn.value = searchParameter ? searchParameter : '';
             }
+
+            $('.js-gme-saddress').val(decodeURIComponent(searchIn.value));
                 
             // Search
             // Create the search box and link it to the UI element.
@@ -713,7 +738,6 @@
                     //});
                     
                     _this._searchAddressByInput(searchIn.value);
-                    
                 }
             });
             
@@ -737,17 +761,19 @@
                 _map = this.map,
                 $myForm = $('#' + gme.mapSettings.id + '-search'),
                 searchIn = $myForm.find('.js-gme-sword').get(0);
-            
-            
+
+            console.log('1');
             if(typeof(window.goTrackEvent) == 'function') {
                 window.goTrackEvent('gmap - address search', 'submit', '"' + addressInput + '"');
             }
                 
+            console.log('2');
             $element.data("geocoder").geocode(
                 {
                     "address": addressInput
                 },
                 function(point, status) {
+                    console.log('3');
                     
                     var searchedAddressObj;
                     
@@ -761,12 +787,14 @@
                                 }
                             });
                     });
+                    console.log('4');
                     
                     
                     var coordsOrigin = new Array(searchedAddressObj.geometry.location.lat(), searchedAddressObj.geometry.location.lng());
                    
                     $('.gme-addresses > li').slideUp();
             
+                    console.log('5');
                     for (var addressIndex in gme.addresses) {
                         
                         var address = gme.addresses[addressIndex];
@@ -779,18 +807,23 @@
                         $addressElement.parent().attr('data-distance', distance);
                     }
             
+                    console.log('6');
                     _this._sortAddressListByDistance();
+                    console.log('7');
+
+                    //adresslist verwerfen und neu schreiben (gekürzt)!
             
                     var addressUids = new Array();
             
-                    
+                    console.log('8');
                    $('.gme-addresses > li').slideDown().each(function() {
                        addressUids.push($(this).find('*[data-address]').first().attr('data-address'));
                    });
             
-            
+                   console.log('9');
                     var newBounds = new google.maps.LatLngBounds();
             
+                    console.log('10');
                     // Clear out the old markers.
                     $.each(_this.markers, function(key, marker) {
                         if ($.inArray(marker.uid.toString(), addressUids) > -1) {
@@ -800,12 +833,17 @@
                             marker.setVisible(false);
                         }
                     });
-                    
+                    console.log('11');
             
                     _this.bounds = newBounds;
                     _map.fitBounds(_this.bounds);
                     
                     $('.locationList').addClass('act');
+                    $('.tx-go-maps .leftSide').addClass('open');
+                    $('.tx-go-maps .leftSide').addClass('open');
+                    $('#' + gme.mapSettings.id + '-infowindow').removeClass('open');
+
+                    
                     
                     return;
                     
@@ -881,23 +919,6 @@
             if (gme.mapSettings.showForm == 1) {
                 var $mapForm = $('#' + gme.mapSettings.id + '-form'),
                     searchIn = $mapForm.find('.js-gme-saddress').get(0);
-
-                // Search
-                // Create the search box and link it to the UI element.
-                var autocompleteOptions = {
-                    types: ['(cities)']
-                };
-                
-                
-                if(typeof(searchIn) != 'undefined') {
-                    var searchBox = new google.maps.places.Autocomplete(searchIn, autocompleteOptions);
-                    /*searchBox.bindTo('bounds', _this.map);*/
-                    
-                    google.maps.event.addListener(searchBox, 'place_changed', function() {
-                        $mapForm.trigger('submit');
-                    });
-                }
-            
             
                 $mapForm.on('submit', function(e) {
                     e.preventDefault();
@@ -988,7 +1009,7 @@
                     window.goTrackEvent('gmap - address list', 'click', '"' + gme.addresses[parseInt($(this).attr('data-address'))].title + '"');
                 }
 
-                $('.tx-go-maps-ext').addClass('infowindowActive');
+                //$('.tx-go-maps').addClass('infowindowActive');
                 $(window).trigger('resize');
 
                 _this.focusAddress(selectedAddress, $element, gme);

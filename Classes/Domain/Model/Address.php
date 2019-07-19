@@ -56,6 +56,12 @@ class Address extends AbstractEntity
      */
     protected $company;
     /**
+     * kundennummer
+     *
+     * @var \string
+     */
+    protected $kundennummer;
+    /**
      * name
      *
      * @var \string
@@ -300,6 +306,22 @@ class Address extends AbstractEntity
     public function setCompany($company)
     {
         $this->company = $company;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKundennummer()
+    {
+        return $this->kundennummer;
+    }
+
+    /**
+     * @param string $kundennummer
+     */
+    public function setKundennummer($kundennummer)
+    {
+        $this->kundennummer = $kundennummer;
     }
 
      /**

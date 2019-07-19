@@ -40,7 +40,7 @@ return [
         ]
     ],
     'palettes' => [
-        'address' => ['showitem' => 'title, company, --linebreak--, name, email, --linebreak--, phonenumber, fax, web, --linebreak--, street, housenumber, zip, city, country, --linebreak--, description'],
+        'address' => ['showitem' => 'title, company, kundennummer, --linebreak--, name, email, --linebreak--, phonenumber, fax, web, --linebreak--, street, housenumber, zip, city, country, --linebreak--, description'],
         'data' => ['showitem' => 'latitude, longitude, address'],
         'interaction' => ['showitem' => 'open_by_click, close_by_click, opened'],
         'link' => ['showitem' => 'info_window_link'],
@@ -152,6 +152,15 @@ return [
         'company' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.company',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'kundennummer' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.kundennummer',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
