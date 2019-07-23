@@ -10,12 +10,13 @@
     overflow: hidden;
 
     .formcontainer {
-
+        pointer-events: none;
         width: 100%;
         position: absolute;
         z-index: 100;
 
         form {
+            pointer-events: all;
             width: calc(100% - 40px);
             left: 0px;
             margin-bottom: 0;
@@ -49,16 +50,10 @@
             }
 
             input.js-gme-saddress {
-                width: calc(100% - 86px);
+                width: calc(100% - 43px);
                 font-weight: 500;
-                margin-left: 32px;
-                
                 color: #666666;
 
-               
-                @media $break-md-query {
-                    margin-left: 43px;
-                }
             }
 
             input.js-gme-submit {
@@ -350,14 +345,14 @@
         }
         
         .close {
-            display: none;
+            display: block;
             width: 42px;
             height: 42px;
             //background: $color-base-light;
             position: absolute;
-            right: $gutter-px;
-            top: $gutter-px;
-            z-index: 100;
+            right: 3px;
+            top: 3px;
+            //z-index: 100;
             cursor: pointer;
             
             &:before {
@@ -373,6 +368,7 @@
                 left: 0;
                 top: 0;
                 font-size: 14px;
+                color: #fff;
             }
         }
         

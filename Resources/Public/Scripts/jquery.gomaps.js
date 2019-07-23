@@ -190,6 +190,8 @@
             }
         },
 
+
+
         // add a point
         addMapPoint: function (pointDescription, Route, $element, infoWindow, gme) {
             var _this = this,
@@ -762,18 +764,15 @@
                 $myForm = $('#' + gme.mapSettings.id + '-search'),
                 searchIn = $myForm.find('.js-gme-sword').get(0);
 
-            console.log('1');
             if(typeof(window.goTrackEvent) == 'function') {
                 window.goTrackEvent('gmap - address search', 'submit', '"' + addressInput + '"');
             }
                 
-            console.log('2');
             $element.data("geocoder").geocode(
                 {
                     "address": addressInput
                 },
                 function(point, status) {
-                    console.log('3');
                     
                     var searchedAddressObj;
                     
@@ -787,43 +786,51 @@
                                 }
                             });
                     });
-                    console.log('4');
-                    
                     
                     var coordsOrigin = new Array(searchedAddressObj.geometry.location.lat(), searchedAddressObj.geometry.location.lng());
                    
                     $('.gme-addresses > li').slideUp();
-            
-                    console.log('5');
-                    for (var addressIndex in gme.addresses) {
-                        
-                        var address = gme.addresses[addressIndex];
-                        var $addressElement = $('.js-gme-address[data-address="' + address.uid + '"]');
-                        var markerLocation = new Array(address.latitude, address.longitude);
-                        var distance = _this._calcDistance(coordsOrigin, markerLocation);
-            
-                        $addressElement.attr('data-distance', distance);
-                        $addressElement.parent().find('.distance').text(distance.toFixed(2) + 'km');
-                        $addressElement.parent().attr('data-distance', distance);
-                    }
-            
-                    console.log('6');
-                    _this._sortAddressListByDistance();
-                    console.log('7');
 
-                    //adresslist verwerfen und neu schreiben (gekürzt)!
+                    //Anpassungen vornehmen:
+                    for (var addressIndex in gme.addresses) {
+
+                        gme.addresses[addressIndex].distance = _this._calcDistance(coordsOrigin, new Array(gme.addresses[addressIndex].latitude, gme.addresses[addressIndex].longitude)).toFixed(2) + ' km';
+
+                        //console.log(gme.addresses[addressIndex]);
             
+                        //das alles verwerfen und die address Json (gme.addresses[addressIndex]) on the fly mit distance bestücken.
+                        //Pseudo Code: gme.addresses[addressIndex].distance = _this._calcDistance(coordsOrigin, markerLocation);
+                        
+                        //var address = gme.addresses[addressIndex];
+                        //var $addressElement = $('.js-gme-address[data-address="' + address.uid + '"]');
+                        //var markerLocation = new Array(address.latitude, address.longitude);
+                        //var distance = _this._calcDistance(coordsOrigin, markerLocation);
+                        //$addressElement.attr('data-distance', distance);
+                        //$addressElement.parent().find('.distance').text(distance.toFixed(2) + 'km');
+                        //$addressElement.parent().attr('data-distance', distance);
+
+
+                    }
+                    gme.addresses.sort(function(a, b) {
+                        return parseFloat(a.distance) - parseFloat(b.distance);
+                    });
+
+                    addressList = gme.addresses.slice(0, 20);
+
                     var addressUids = new Array();
-            
-                    console.log('8');
-                   $('.gme-addresses > li').slideDown().each(function() {
-                       addressUids.push($(this).find('*[data-address]').first().attr('data-address'));
-                   });
-            
-                   console.log('9');
+
+                    //ausleeren
+                    $('.gme-addresses > li').remove();
+                    for(var addressIndex in addressList) {
+                        $('.gme-addresses').append('<li><a data-address="'+ addressList[addressIndex].uid +'" class="js-gme-address" href="#"><span class="title">' + addressList[addressIndex].title + '</span><br>' + addressList[addressIndex].address + ' . ' + addressList[addressIndex].zip + ' ' + addressList[addressIndex].city + ' . ' + addressList[addressIndex].country  +'<br><span class="distance">' + addressList[addressIndex].distance + '</span></a></li>');                   
+                        addressUids.push(addressList[addressIndex].uid+ '');
+                    }
+
+                   $('.gme-addresses > li').slideDown();
+                   
+                   
                     var newBounds = new google.maps.LatLngBounds();
             
-                    console.log('10');
                     // Clear out the old markers.
                     $.each(_this.markers, function(key, marker) {
                         if ($.inArray(marker.uid.toString(), addressUids) > -1) {
@@ -833,7 +840,6 @@
                             marker.setVisible(false);
                         }
                     });
-                    console.log('11');
             
                     _this.bounds = newBounds;
                     _map.fitBounds(_this.bounds);
@@ -843,8 +849,11 @@
                     $('.tx-go-maps .leftSide').addClass('open');
                     $('#' + gme.mapSettings.id + '-infowindow').removeClass('open');
 
-                    
-                    
+                    $('.gme-addresses > li a').on('click', function() {
+                        var uid = $(this).attr("data-address");
+                        _this.focusAddress(uid, $element, gme);
+                    });
+
                     return;
                     
                 }
@@ -992,6 +1001,7 @@
                     $.each(_this.markers, function (key, marker) {
                         marker.setVisible(true);
                     }); 
+                    
                 }
                 _this.refreshMap($element, gme);
             });
