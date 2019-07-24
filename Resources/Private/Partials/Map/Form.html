@@ -3,15 +3,7 @@
 	
 <f:form id="gme-{map.uid}-form" method="post">
 	<f:if condition="{map.calcRoute} || {map.markerSearch}">
-		<f:form.textfield name="saddress" class="js-gme-saddress" value="{request.saddress}" />
-        <f:if condition="{f:count(subject:addresses)} > 1 && {map.calcRoute}">
-            <select name="eaddress" class="js-gme-eaddress" value="{request.eaddress}">
-				<option value="-1">Ziel wählen</option>
-                <f:for each="{addresses}" as="address" iteration="i">
-                    <option value="{i.index}">{address.title}</option>
-                </f:for>
-            </select>
-        </f:if>
+		<f:form.textfield name="saddress" class="js-gme-saddress" value="{request.saddress}" placeholder="Händler suchen" />
 	</f:if>
 	<f:if condition="{map.travelMode} == 1">
 		<f:comment>
@@ -37,6 +29,15 @@
 		<f:form.select name="unitsystem" value="{f:if(condition:request.unitsystem,then:request.unitsystem,else:2)}"
 					   class="js-gme-unitsystem" options="{map.unitSystems}" size="1" />
 	</f:if>
-	<f:form.submit class="js-gme-submit" name="submit" value="{f:translate(key:'tx_gomaps_partials_map_assign.submit')}" />
+	<f:form.submit class="js-gme-submit" name="submit" value="" />
+	<span class="lupe"></span>
+	<f:if condition="{f:count(subject:addresses)} > 1 && {map.calcRoute}">
+        <select name="eaddress" class="js-gme-eaddress" value="{request.eaddress}">
+			<option value="-1">Ziel wählen</option>
+            <f:for each="{addresses}" as="address" iteration="i">
+                <option value="{i.index}">{address.title}</option>
+            </f:for>
+        </select>
+    </f:if>
 </f:form>
 </html>

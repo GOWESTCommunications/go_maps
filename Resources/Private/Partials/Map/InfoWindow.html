@@ -1,26 +1,48 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
 <div class="infowindow" id="gme-{map.uid}-infowindow">
-    <span class="close">close</span>
+    <span class="close"></span>
     <f:if condition="{address.infoWindowImages}">
-        <div class="infowindow-image">
-            <f:for each="{address.infoWindowImages}" as="image">
-                <f:link.typolink parameter="{image.originalResource.link}">
-                    <f:image image="{image}" maxWidth="{settings.infoWindow.imageMaxWidth}"/>
-                </f:link.typolink>
-                <f:if condition="{image.originalResource.description}">
-                    <p>{image.originalResource.description}</p>
-                </f:if>
-            </f:for>
-        </div>
+        <f:then>
+            <div class="infowindow-image">
+                <f:for each="{address.infoWindowImages}" as="image">
+                    <f:link.typolink parameter="{image.originalResource.link}">
+                        <f:image image="{image}" maxWidth="{settings.infoWindow.imageMaxWidth}"/>
+                    </f:link.typolink>
+                    <f:if condition="{image.originalResource.description}">
+                        <p>{image.originalResource.description}</p>
+                    </f:if>
+                </f:for>
+            </div>
+        </f:then>
+        <f:else>
+            <div class="infowindow-image">
+                <f:image src="EXT:go_maps/Resources/Public/Icons/Image/default.jpg" alt="Default Image" />
+            </div>
+        </f:else>
     </f:if>
     <div class="infowindow-content">
-        <h2>{address.title} / {address.company}</h2>
-        <p>Name: {address.name}, E-Mail: {address.email}, Phone: {address.phonenumber}, Fax: {address.fax}, Web: {address.web}</p>
-        <p>Address: {address.street} {address.housenumber}, {address.zip} {address.city}, {address.country}</p>
+        <h3>{address.company}</h3>
+        <span>{address.name}</span>
+        <div>
+            {address.address}, {address.zip} {address.city} </br></br>
+            <ul class="contact-all">
+                <f:if condition="{address.phonenumber}"><li><span class="highlight">Tel: </span><span class="contact"> {address.phonenumber}</span></li></f:if>
+                <f:if condition="{address.email}"><li><span class="highlight">E-Mail: </span><span class="contact"> {address.email}</span></li></f:if>
+                <f:if condition="{address.fax}"><li><span class="highlight">Fax: </span><span class="contact"> {address.fax}</span></li></f:if>
+                <f:if condition="{address.web}"><li>
+                    <span class="highlight">Web: </span><span class="contact">
+                        <a href="https://{address.web}">
+                            {address.web}
+                        </a>
+                    </span>
+                </li></f:if>
+            </ul>
+      
+        </div>
         <f:format.html>{address.description}</f:format.html>
         <f:for each="{address.categories}" as="category">
-            {category.title}
+            <div>{category.title}</div>
         </f:for>
     </div>
     <f:if condition="{map.showRoute} || {map.calcRoute}">

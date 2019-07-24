@@ -95,6 +95,9 @@
         latitude: {address.latitude -> f:format.number(decimals:6, thousandsSeparator:'')},
         longitude: {address.longitude -> f:format.number(decimals:6, thousandsSeparator:'')},
         address: '<gomaps:escape>{address.address}</gomaps:escape>',
+        city: '<gomaps:escape>{address.city}</gomaps:escape>',
+        country: '<gomaps:escape>{address.country}</gomaps:escape>',
+        zip: '<gomaps:escape>{address.zip}</gomaps:escape>',
         <f:if condition="{address.marker}">
             <f:then>
                 <f:if condition="{address.imageSize}">
