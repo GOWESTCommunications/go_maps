@@ -25,7 +25,9 @@
         <h3>{address.company}</h3>
         <span>{address.name}</span>
         <div>
-            {address.address}, {address.zip} {address.city} </br></br>
+            {address.street} {address.housenumber} </br>
+            {address.zip} {address.city} </br>
+            {address.country}
             <ul class="contact-all">
                 <f:if condition="{address.phonenumber}"><li><span class="highlight">Tel: </span><span class="contact"> {address.phonenumber}</span></li></f:if>
                 <f:if condition="{address.email}"><li><span class="highlight">E-Mail: </span><span class="contact"> {address.email}</span></li></f:if>
