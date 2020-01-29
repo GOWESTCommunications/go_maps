@@ -37,6 +37,12 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class Address extends AbstractEntity
 {
     /**
+     * cruser
+     *
+     * @var \integer
+     */
+    protected $cruser;
+    /**
      * title
      *
      * @var \string
@@ -255,6 +261,27 @@ class Address extends AbstractEntity
         $this->map = new ObjectStorage();
     }
 
+    /**
+     * Returns the cruser
+     *
+     * @return \integer $cruser
+     */
+    public function getCruser()
+    {
+        return $this->cruser;
+    }
+
+    /**
+     * Sets the title
+     *
+     * @param integer $cruser
+     * @return \void
+     */
+    public function setCruser($cruser)
+    {
+        $this->cruser = $cruser;
+    }
+    
     /**
      * Returns the title
      *

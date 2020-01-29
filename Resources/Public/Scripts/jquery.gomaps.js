@@ -124,6 +124,15 @@
                     $element.data("map").setZoom(zoom - 1);
                 });
             }
+
+            $('.locationList .close').on('click', function(){
+                $('.leftSide').removeClass('open');
+                $('.js-gme-sword').val('');
+                $('.js-gme-sword').focus();
+                $('.routeTable').empty();
+                console.log('hier111');
+            });
+           
             
 	        // trigger mapcreated on map
 	        $element.trigger("mapcreated");
@@ -185,6 +194,10 @@
             var getAddress = this.getURLParameter('tx_gomaps_show\\[address\\]'),
                 $element = this.element,
                 gme = this.data;
+
+                console.log('test');
+                console.log(getAddress + 'address');
+
             if (getAddress) {
                 this.focusAddress(getAddress, $element, gme);
             }
@@ -202,13 +215,22 @@
 
             if (Math.round(latitude) == 0 && Math.round(longitude) == 0) {
                 $element.data("geocoder").geocode({"address": pointDescription.address}, function (point, status) {
-                    latitude = point[0].geometry.location.lat();
-                    longitude = point[0].geometry.location.lng();
-                    var position = new google.maps.LatLng(latitude, longitude);
-                    _this.setMapPoint(pointDescription, Route, $element, infoWindow, position, gme);
+                    //Übergangslösung, bis ich einen Weg gefunden habe, alle neuen Adressen auf einmal Geocoden zu können ohne Fehler --> JR 23.10.2019
+                    if(status == 'OVER_QUERY_LIMIT') {
+                        return;
+                    } else {
+                        if(point.length > 0) {
+                            latitude = point[0].geometry.location.lat();
+                            longitude = point[0].geometry.location.lng();
+                            var position = new google.maps.LatLng(latitude, longitude);
+                            _this.setMapPoint(pointDescription, Route, $element, infoWindow, position, gme);
+                        }
+                    }
                 });
-                return;
+                return;   
             }
+
+            
 
             var position = new google.maps.LatLng(latitude, longitude);
 
@@ -221,6 +243,8 @@
 
 
             $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'block');
+
+            
             if(gme.mapSettings.infowindowStyle == 1) {
                 $.each(this.markers, function(key, marker) {
                     if (marker.uid == addressUid) {
@@ -255,6 +279,7 @@
                                     $(window).trigger('resize');
                                     $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'none');
                                     $('#' + gme.mapSettings.id + '-infowindow').removeClass('open');
+                                    //$('.leftSide').addClass('open');
                                 });
                                 if($('.tx-go-maps .infowindow .infowindow-content .infowindow .infowindow-image').length <= 0) {
                                     $('.tx-go-maps .infowindow .infowindow-content .infowindow .infowindow-content').addClass('no-img');
@@ -266,6 +291,8 @@
                                 marker.infoWindow.open(_this.map, marker);
                             }
                         }
+                        gme.mapSettings.zoom = gme.mapSettings.focusZoom ? gme.mapSettings.focusZoom : 17;
+                        _map.setZoom(gme.mapSettings.zoom);
                         _this.refreshMap($element, gme);
                         return true;
                     }
@@ -278,13 +305,9 @@
                             marker.infoWindow.setContent(marker.infoWindowContent);
                             marker.infoWindow.open(_this.map, marker);
                         }
+                        gme.mapSettings.zoom = gme.mapSettings.focusZoom ? gme.mapSettings.focusZoom : 14;
+                        _map.setZoom(gme.mapSettings.zoom);
                         _this.refreshMap($element, gme);
-                        setTimeout(function() {
-                            $('.gm-style-iw-d div #' + gme.mapSettings.id + '-infowindow').css('display', 'block');
-                            $('.gm-style-iw-d div #' + gme.mapSettings.id + '-infowindow').css('position', 'relative');
-                            $('.gm-style-iw-d div #' + gme.mapSettings.id + '-infowindow .close').css('display', 'none');
-                        }, 200);
-                        
                         return true;
                     }
                 });
@@ -407,7 +430,7 @@
                 var infoWindowContent = pointDescription.infoWindowContent;
                 if (pointDescription.infoWindowLink > 0) {
                     var daddr = (pointDescription.infoWindowLink == 2) ? pointDescription.latitude + ", " + pointDescription.longitude : pointDescription.address;
-                    infoWindowContent += '<p class="routeLink btn"><a class="routeLinklink" href="//www.google.com/maps/dir/?api=1&destination=' + encodeURI(daddr) + '" target="_blank">' + gme.ll.infoWindowLinkText + '<\/a><\/p>';
+                    infoWindowContent += '<p class="routeLink btn"><a href="//www.google.com/maps/dir/?api=1&destination=' + encodeURI(daddr) + '" target="_blank">' + gme.ll.infoWindowLinkText + '<\/a><\/p>';
                     setTimeout(function() {
                         $('.tx-go-maps .infowindow .infowindow .infowindow-content').append($('.routeLink'));
                     }, 300);
@@ -702,11 +725,15 @@
 
                 console.log('search init');
 
+                
+
+            
             if(typeof(searchIn) != "undefined") {
                 searchIn.value = searchParameter ? searchParameter : '';
-                $('.js-gme-saddress').val(decodeURIComponent(searchIn.value));
             }
-          
+
+            $('.js-gme-saddress').val(decodeURIComponent(searchIn.value));
+                
             // Search
             // Create the search box and link it to the UI element.
             var autocompleteOptions = {
@@ -795,7 +822,6 @@
 
                     //Anpassungen vornehmen:
                     for (var addressIndex in gme.addresses) {
-
                         gme.addresses[addressIndex].distance = _this._calcDistance(coordsOrigin, new Array(gme.addresses[addressIndex].latitude, gme.addresses[addressIndex].longitude)).toFixed(2) + ' km';
 
                         //console.log(gme.addresses[addressIndex]);
@@ -824,7 +850,7 @@
                     //ausleeren
                     $('.gme-addresses > li').remove();
                     for(var addressIndex in addressList) {
-                        $('.gme-addresses').append('<li><a data-address="'+ addressList[addressIndex].uid +'" class="js-gme-address" href="#"><span class="title">' + addressList[addressIndex].title + '</span><br>' + addressList[addressIndex].address + ' . ' + addressList[addressIndex].zip + ' ' + addressList[addressIndex].city + ' . ' + addressList[addressIndex].country  +'<br><span class="distance">' + addressList[addressIndex].distance + '</span></a></li>');                   
+                        $('.gme-addresses').append('<li><a data-address="'+ addressList[addressIndex].uid +'" class="js-gme-address" href="#"><span class="title">' + addressList[addressIndex].title + '</span><br>' + addressList[addressIndex].address + ', ' + addressList[addressIndex].zip + ' ' + addressList[addressIndex].city + ', ' + addressList[addressIndex].country  +'<br><span class="distance">' + addressList[addressIndex].distance + '</span></a></li>');                   
                         addressUids.push(addressList[addressIndex].uid+ '');
                     }
 

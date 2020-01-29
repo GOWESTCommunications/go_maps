@@ -44,4 +44,10 @@ config.tx_extbase.persistence.classes {
 			tableName = sys_category
 		}
 	}
+
+	Clickstorm\GoMaps\Domain\Model\Address {
+            mapping {
+                columns.cruser_id.mapOnProperty = cruser
+            }
+        }
 }
