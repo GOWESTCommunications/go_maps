@@ -137,6 +137,9 @@
 			<trans-unit id="tx_gomaps_domain_model_map.zoom">
 				<source><![CDATA[zoom]]></source>
 			</trans-unit>
+			<trans-unit id="tx_gomaps_domain_model_map.zweitfiliale">
+				<source><![CDATA[Zweitfiliale]]></source>
+			</trans-unit>
 			<trans-unit id="tx_gomaps_domain_model_map.zoom_control">
 				<source><![CDATA[zoomControl]]></source>
 			</trans-unit>

@@ -19,6 +19,7 @@ CREATE TABLE tx_gomaps_domain_model_address (
 	zip varchar(20) DEFAULT '' NOT NULL,
 	city varchar(20) DEFAULT '' NOT NULL,
 	country varchar(20) DEFAULT '' NOT NULL,
+	zweitfiliale tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	description text NOT NULL,
 	configuration_map varchar(255) DEFAULT '' NOT NULL,
 	latitude double(11,6) DEFAULT '0.000000' NOT NULL,
