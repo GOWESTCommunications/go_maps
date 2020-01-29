@@ -6,30 +6,37 @@
 <!-- Keep the id and the js-classes -->
 <f:section name="Main">
     <div class="row">
-        <div class="col-xs-12 col-md-6">
-            <f:if condition="{map.showAddresses}">
+        <f:if condition="{map.markerSearch}">
+            <div class="formcontainer col-12 col-sm-6 col-md-4 col-md-push-4 col-lg-3 col-lg-push-3">
+                <f:if condition="!{map.selector}">
+                    <f:render partial="Map/Form" arguments="{map:map, request:request, addresses: addresses}"/>
+                </f:if>
+            </div>
+        </f:if>
+        <f:if condition="{map.showAddresses}">
+            <div class="col-xs-12 col-md-4 col-lg-3 leftSide">
                 <div class="locationList">
                     <section>
-                        <h2>Addresses</h2>
+                        <h2>Addressen:</h2>
                         <f:render partial="Map/Addresses" arguments="{map:map, addresses:addresses, request:request, categories: categories}" />
                     </section>
                 </div>
-            </f:if>
-            <f:if condition="{map.showCategories}">
-                <f:render partial="Map/Categories" arguments="{request:request, map:map, settings:settings, addresses:addresses, categories: categories}" />
-            </f:if>
-        </div>
-        
+            </div>
+        </f:if>
+
         <f:if condition="{map.infowindowStyle} == 1">
             <f:render partial="Map/InfoWindowCustom" arguments="{request:request, map:map, settings:settings, addresses:addresses, categories: categories}" />
         </f:if>
         
-        <f:if condition="!{map.selector}">
-            <div class="col-xs-12 col-md-12 mapWrapper">
-                <f:render partial="Map/Form" arguments="{map:map, request:request, addresses: addresses}"/>
-                <div class="js-map" id="gme-{map.uid}"> </div>
-            </div>
+        
+        <div class="col-12  mapWrapper">
+            <div class="js-map" id="gme-{map.uid}"> </div>
+        </div>
+        
+        <f:if condition="{map.showCategories}">
+            <f:render partial="Map/Categories" arguments="{request:request, map:map, settings:settings, addresses:addresses, categories: categories}" />
         </f:if>
+        
     </div>
     <f:render partial="Map/Assign" arguments="{request:request, map:map, settings:settings, addresses:addresses}" />
     

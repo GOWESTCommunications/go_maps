@@ -195,6 +195,11 @@
             @include transition(0.25s ease);
         }
     }
+
+    
+    
+
+   
     
     .infowindow {
         background: white;
@@ -211,7 +216,6 @@
                 height: auto;
             }
         }
-        
 
         &.open {
             display: block;
@@ -229,7 +233,6 @@
                         width: 100%;
                     }
                 }
-
 
                 .infowindow-content {
                     padding: 35px;
@@ -250,13 +253,13 @@
                         min-width: 20%;
                     }
                     .contact {
-                        color: rgba(220,42,27,1);
+                        color: rgba(46,65,84,1);
 
                         a {
-                            color: rgba(220,42,27,1);
+                            color: rgba(46,65,84,1);
 
                             &:hover {
-                                color: rgba(57,63,69,1);
+                                color: rgba(46,65,84,1);
                             }
                         }
                     }
@@ -271,24 +274,22 @@
                         margin: 0;
                     }
 
-                    .routeLink a {
-                        text-decoration: none;
-                        color: white;
-                    }
-
                     .routeLink.btn {
                         padding: 0 1rem;
                         margin-top: 30px;
                         width: calc(100% - 20px);
-                        background: rgba(220,42,27,1);
+                        background: $color-base-dark;
                         text-align: center;
+
+                        a {
+                            text-decoration: none;
+                            color: white;
+                        }
                     }
                 }
 
             }
         }
-
-       
         
         @media $break-md-query {
             position: absolute;
@@ -658,4 +659,6 @@
             content: '\23af';
         }
     }
+
+ 
 }

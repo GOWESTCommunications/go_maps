@@ -307,6 +307,12 @@
                         gme.mapSettings.zoom = gme.mapSettings.focusZoom ? gme.mapSettings.focusZoom : 14;
                         _map.setZoom(gme.mapSettings.zoom);
                         _this.refreshMap($element, gme);
+                        setTimeout(function() {
+                            $('.gm-style-iw-d div #' + gme.mapSettings.id + '-infowindow').css('display', 'block');
+                            $('.gm-style-iw-d div #' + gme.mapSettings.id + '-infowindow').css('position', 'relative');
+                            $('.gm-style-iw-d div #' + gme.mapSettings.id + '-infowindow .close').css('display', 'none');
+                        }, 200);
+                        
                         return true;
                     }
                 });
@@ -429,7 +435,7 @@
                 var infoWindowContent = pointDescription.infoWindowContent;
                 if (pointDescription.infoWindowLink > 0) {
                     var daddr = (pointDescription.infoWindowLink == 2) ? pointDescription.latitude + ", " + pointDescription.longitude : pointDescription.address;
-                    infoWindowContent += '<p class="routeLink btn"><a href="//www.google.com/maps/dir/?api=1&destination=' + encodeURI(daddr) + '" target="_blank">' + gme.ll.infoWindowLinkText + '<\/a><\/p>';
+                    infoWindowContent += '<p class="routeLink btn"><a class="routeLinklink" href="//www.google.com/maps/dir/?api=1&destination=' + encodeURI(daddr) + '" target="_blank">' + gme.ll.infoWindowLinkText + '<\/a><\/p>';
                     setTimeout(function() {
                         $('.tx-go-maps .infowindow .infowindow .infowindow-content').append($('.routeLink'));
                     }, 300);
@@ -724,15 +730,11 @@
 
                 console.log('search init');
 
-                
-
-            
             if(typeof(searchIn) != "undefined") {
                 searchIn.value = searchParameter ? searchParameter : '';
+                $('.js-gme-saddress').val(decodeURIComponent(searchIn.value));
             }
-
-            $('.js-gme-saddress').val(decodeURIComponent(searchIn.value));
-                
+          
             // Search
             // Create the search box and link it to the UI element.
             var autocompleteOptions = {
