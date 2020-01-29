@@ -135,7 +135,8 @@
 	        // trigger mapcreated on map
 	        $element.trigger("mapcreated");
 
-	        this.refreshMap($element, this.gme);
+            this.refreshMap($element, this.gme);
+            });
         },
 
         // categories checkboxes
@@ -277,11 +278,8 @@
                                     $(window).trigger('resize');
                                     $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'none');
                                     $('#' + gme.mapSettings.id + '-infowindow').removeClass('open');
-<<<<<<< HEAD
-                                    //$('.leftSide').addClass('open');
-=======
                                     $('.leftSide').addClass('open');
->>>>>>> fc66b98e9a864d9af5fede7c7a969a5719972b50
+
                                 });
                                 if($('.tx-go-maps .infowindow .infowindow-content .infowindow .infowindow-image').length <= 0) {
                                     $('.tx-go-maps .infowindow .infowindow-content .infowindow .infowindow-content').addClass('no-img');
