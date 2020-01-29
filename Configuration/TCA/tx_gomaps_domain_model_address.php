@@ -19,13 +19,13 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'title,address,info_window_content',
+        'searchFields' => 'title,address,info_window_content,kundennummer',
         'iconfile' => 'EXT:go_maps/Resources/Public/Icons/tx_gomaps_domain_model_address.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, categories,
                                   configuration_map, latitude, longitude, address, marker, image_size, image_width,
-                                  image_height, info_window_content, info_window_images, info_window_link, close_by_click, open_by_click',
+                                  image_height, info_window_content, info_window_images, info_window_link, close_by_click, open_by_click, zweitfiliale',
     ],
     'types' => [
         '0' => [
@@ -40,7 +40,7 @@ return [
         ]
     ],
     'palettes' => [
-        'address' => ['showitem' => 'title, company, kundennummer, --linebreak--, name, email, --linebreak--, phonenumber, fax, web, --linebreak--, street, housenumber, zip, city, country, --linebreak--, description'],
+        'address' => ['showitem' => 'title, company, kundennummer, --linebreak--, name, email, --linebreak--, phonenumber, fax, web, --linebreak--, street, housenumber, zip, city, country, zweitfiliale, --linebreak--, description'],
         'data' => ['showitem' => 'latitude, longitude, address'],
         'interaction' => ['showitem' => 'open_by_click, close_by_click, opened'],
         'link' => ['showitem' => 'info_window_link'],
@@ -255,6 +255,13 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
+            ],
+        ],
+        'zweitfiliale' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:go_maps/Resources/Private/Language/locallang_db.xlf:tx_gomaps_domain_model_address.zweitfiliale',
+            'config' => [
+                'type' => 'check',
             ],
         ],
         'description' => [

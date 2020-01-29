@@ -122,6 +122,12 @@ class Address extends AbstractEntity
      */
     protected $country;
     /**
+     * zweitfiliale
+     *
+     * @var boolean
+     */
+    protected $zweitfiliale;
+    /**
      * configurationMap
      *
      * @var \string
@@ -434,6 +440,37 @@ class Address extends AbstractEntity
     public function setCountry($country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * Returns the zweitfiliale
+     *
+     * @return boolean $zweitfiliale
+     */
+    public function getZweitfiliale()
+    {
+        return $this->zweitfiliale;
+    }
+
+    /**
+     * Returns the boolean state of zweitfiliale
+     *
+     * @return boolean
+     */
+    public function isZweitfiliale()
+    {
+        return $this->getZweitfiliale();
+    }
+
+    /**
+     * Sets the zweitfiliale
+     *
+     * @param boolean $zweitfiliale
+     * @return void
+     */
+    public function setZweitfiliale($zweitfiliale)
+    {
+        $this->zweitfiliale = $zweitfiliale;
     }
 
 

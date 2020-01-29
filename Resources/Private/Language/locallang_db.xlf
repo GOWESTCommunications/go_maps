@@ -93,6 +93,9 @@
 			<trans-unit id="tx_gomaps_domain_model_address.country">
 				<source><![CDATA[Land]]></source>
 			</trans-unit>
+			<trans-unit id="tx_gomaps_domain_model_address.zweitfiliale">
+				<source><![CDATA[Zweitfiliale]]></source>
+			</trans-unit>
 			<trans-unit id="tx_gomaps_domain_model_address.description">
 				<source><![CDATA[Beschreibung]]></source>
 			</trans-unit>
