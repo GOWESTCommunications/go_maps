@@ -88,73 +88,6 @@
     </f:for>
 
     gme.addresses = new Array();
-    <f:for each="{addresses}" as="address" iteration="i">
-        gme.addresses[{i.index}]  = <f:format.raw>{</f:format.raw>
-        uid: {address.uid},
-        title: '<gomaps:escape>{address.title}</gomaps:escape>',
-        latitude: {address.latitude -> f:format.number(decimals:6, thousandsSeparator:'')},
-        longitude: {address.longitude -> f:format.number(decimals:6, thousandsSeparator:'')},
-        address: '<gomaps:escape>{address.address}</gomaps:escape>',
-        city: '<gomaps:escape>{address.city}</gomaps:escape>',
-        country: '<gomaps:escape>{address.country}</gomaps:escape>',
-        zip: '<gomaps:escape>{address.zip}</gomaps:escape>',
-        <f:if condition="{address.marker}">
-            <f:then>
-                <f:if condition="{address.imageSize}">
-                    <f:then>
-                        marker: '{f:uri.image(src:address.marker.uid,absolute:1,treatIdAsReference:1,width:address.imageWidth,height:'{address.imageHeight}c')}',
-                        imageSize: 1,
-                    </f:then>
-                    <f:else>
-                        marker: '{f:uri.image(src:address.marker.originalResource.publicUrl,absolute:1)}',
-                        imageSize: 0,
-                    </f:else>
-                </f:if>
-            </f:then>
-            <f:else>
-                <f:for each="{address.categories}" as="category" iteration="icat">
-                    <f:if condition="{category.gmeMarker}">
-                        <f:if condition="{category.gmeImageSize}">
-                            <f:then>
-                                marker: '{f:uri.image(src:category.gmeMarker.uid,absolute:1,treatIdAsReference:1,width:category.gmeImageWidth,height:'{category.gmeImageHeight}c')}',
-                                imageSize: 1,
-                            </f:then>
-                            <f:else>
-                                marker: '{f:uri.image(src:category.gmeMarker.originalResource.publicUrl,absolute:1)}',
-                                imageSize: 0,
-                            </f:else>
-                        </f:if>
-                    </f:if>
-                </f:for>
-            </f:else>
-        </f:if>
-
-        imageWidth: {address.imageWidth},
-        imageHeight: {address.imageHeight},
-        infoWindowContent: '<f:format.raw><gomaps:escape><f:render partial="Map/InfoWindow" arguments="{_all}" /></gomaps:escape></f:format.raw>',
-        infoWindowLink: {address.infoWindowLink},
-        <f:if condition="{settings.infoWindow.openByClick}">
-            <f:then>
-                openByClick: 1,
-            </f:then>
-            <f:else>
-                openByClick: {f:if(condition:"{address.openByClick}", then:"1", else:"0")},
-            </f:else>
-        </f:if>
-        <f:if condition="{settings.infoWindow.closeByClick}">
-            <f:then>
-                closeByClick: 1,
-            </f:then>
-            <f:else>
-                closeByClick: {f:if(condition:"{address.closeByClick}", then:"1", else:"0")},
-            </f:else>
-        </f:if>
-        opened: {f:if(condition:"{address.opened}", then:"1", else:"0")},
-        categories: '<f:for each="{address.categories}" as="category" iteration="icat">{category.uid}{f:if(condition:icat.isLast,then:'',else:',')}</f:for>'
-        <f:format.raw>}</f:format.raw>
-    </f:for>
-    console.log(gme.addresses);
-
     gme.ll = {};
     gme.ll.alert = "<f:translate key="LLL:EXT:go_maps/Resources/Private/Language/locallang.xlf:tx_gomaps_partials_map_assign.alert" />";
     gme.ll.submit = "<f:translate key="LLL:EXT:go_maps/Resources/Private/Language/locallang.xlf:tx_gomaps_partials_map_assign.submit" />";
@@ -166,14 +99,35 @@
     } else {
         idSelector = gme.mapSettings.id;
     }
-    var $element = jQuery("#" + idSelector);
-    $element.gomaps(gme);
-    if(gme.mapSettings.width.indexOf('%') != -1) {
-        jQuery(window).resize(function() {
-            $element.trigger('mapresize');
+    
+    const addressAjaxUrl = '/typo3temp/assets/json/go_maps/map-addresses-{map.uid}-{request.language}.json';
+    
+    function goMapsGetAddressJson() {
+        $.ajax({
+            url: addressAjaxUrl,
+            cache: false
+        }).done(function( data, textStatus, jqXHR ) {
+            gme.addresses = data;
+            var $element = $("#" + idSelector);
+            $element.gomaps(gme);
+            if(gme.mapSettings.width.indexOf('%') != -1) {
+                    $(window).resize(function() {
+                    $element.trigger('mapresize');
+                    });
+            }
+        }).fail(function( jqXHR, textStatus, errorThrown ) {
+            $.ajax({
+                url: window.location.href,
+                data: {eID: 'createMapJson', lang: '<f:format.raw>{request.language}</f:format.raw>'},
+                cache: false
+            }).done(function( data, textStatus, jqXHR ) {
+                goMapsGetAddressJson();
+            });
         });
     }
-
+    goMapsGetAddressJson();
+    
+    
     }); // end of closure
     })(jQuery, window, document);
 </gomaps:script>

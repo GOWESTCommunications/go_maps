@@ -138,33 +138,51 @@ class MapController extends ActionController
         /* @var Map $map */
         $map = $map ?? $this->mapRepository->findByUid($this->settings['map']);
 
-        // find addresses
-        $addresses = $map->getAddresses();
-
-        // no addresses related to the map, try to find some from the storagePid
-        if($addresses->count() === 0 && $this->settings['storagePid']) {
-            $pid = str_ireplace('this', $GLOBALS['TSFE']->id, $this->settings['storagePid']);
-            $addresses = $this->addressRepository->findAllAddresses($map, $pid);
-        }
-
-
-        // get categories
-        if ($map->isShowCategories()) {
-            foreach ($addresses as $address) {
-                /* @var \Clickstorm\GoMaps\Domain\Model\Address $address */
-                $addressCategories = $address->getCategories();
-                /* @var \Clickstorm\GoMaps\Domain\Model\Category $addressCategory */
-                foreach ($addressCategories as $addressCategory) {
-                    $categoriesArray[$addressCategory->getUid()] = $addressCategory;
-                }
-            }
-        }
+        #// find addresses
+        #$addresses = $map->getAddresses();
+#
+        #// no addresses related to the map, try to find some from the storagePid
+        #if($addresses->count() === 0 && $this->settings['storagePid']) {
+        #    $pid = str_ireplace('this', $GLOBALS['TSFE']->id, $this->settings['storagePid']);
+        #    $addresses = $this->addressRepository->findAllAddresses($map, $pid);
+        #}
+#
+#
+        #// get categories
+        #if ($map->isShowCategories()) {
+        #    foreach ($addresses as $address) {
+        #        /* @var \Clickstorm\GoMaps\Domain\Model\Address $address */
+        #        $addressCategories = $address->getCategories();
+        #        /* @var \Clickstorm\GoMaps\Domain\Model\Category $addressCategory */
+        #        foreach ($addressCategories as $addressCategory) {
+        #            $categoriesArray[$addressCategory->getUid()] = $addressCategory;
+        #        }
+        #    }
+        #}
 
         $this->view->assignMultiple([
-            'request' => $this->request->getArguments(),
-            'map' => $map, 'addresses' => $addresses,
+            'request' => array_merge($this->request->getArguments(), ['language' => $this->getLanguage()]),
+            'map' => $map,
+            'addresses' => $addresses,
             'categories' => $categoriesArray,
             'googleMapsLibrary' => $this->googleMapsLibrary
         ]);
     }
+    
+    /**
+     * Get the current language
+     */
+    protected function getLanguage() {
+        if (TYPO3_MODE === 'FE') {
+            if (isset($GLOBALS['TSFE']->config['config']['language'])) {
+                return $GLOBALS['TSFE']->config['config']['language'];
+            } else if ($GLOBALS['TSFE']->sys_language_isocode) {
+                return $GLOBALS['TSFE']->sys_language_isocode;
+            }
+        } else if (strlen($GLOBALS['BE_USER']->uc['lang']) > 0) {
+            return $GLOBALS['BE_USER']->uc['lang'];
+        }
+        return 'de'; //default
+    }
+    
 }

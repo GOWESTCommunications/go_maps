@@ -7,7 +7,7 @@
             <div class="infowindow-image">
                 <f:for each="{address.infoWindowImages}" as="image">
                     <f:link.typolink parameter="{image.originalResource.link}">
-                        <f:image image="{image}" maxWidth="{settings.infoWindow.imageMaxWidth}"/>
+                        <f:image image="{image}" maxWidth="{settings.infoWindow.imageMaxWidth}" absolute="1"/>
                     </f:link.typolink>
                     <f:if condition="{image.originalResource.description}">
                         <p>{image.originalResource.description}</p>
@@ -17,7 +17,7 @@
         </f:then>
         <f:else>
             <div class="infowindow-image">
-                <f:image src="EXT:go_maps/Resources/Public/Icons/Image/default.jpg" alt="Default Image" />
+                <f:image src="EXT:go_maps/Resources/Public/Icons/Image/default.jpg" absolute="1" alt="Default Image" />
             </div>
         </f:else>
     </f:if>

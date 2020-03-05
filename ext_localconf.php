@@ -24,3 +24,5 @@ $TYPO3_CONF_VARS['EXTCONF']['cms']['db_layout']['addTables']['tx_gomaps_domain_m
 
 // here we register "tx_gomaps_double6"
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\Clickstorm\GoMaps\Evaluation\Double6Evaluator::class] = '';
+
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['createMapJson'] = \Clickstorm\GoMaps\Controller\AjaxController::class . '::createMapJson';

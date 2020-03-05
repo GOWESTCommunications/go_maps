@@ -57,6 +57,7 @@
 
         initialize: function() {
             var $element = this.element;
+            var _this = this;
 	        this.route = [];
 	        this.infoWindow = new google.maps.InfoWindow();
 	        this.bounds = new google.maps.LatLngBounds();
@@ -132,11 +133,17 @@
                 $('.routeTable').empty();
            
             
-	        // trigger mapcreated on map
-	        $element.trigger("mapcreated");
-
-            this.refreshMap($element, this.gme);
+                // trigger mapcreated on map
+                $element.trigger("mapcreated");
+    
+                _this.refreshMap($element, _this.gme);
             });
+    
+    
+            // trigger mapcreated on map
+            $element.trigger("mapcreated");
+    
+            this.refreshMap($element, this.gme);
         },
 
         // categories checkboxes
@@ -273,13 +280,19 @@
                                     if(typeof(window.goTrackEvent) == 'function') {
                                         window.goTrackEvent('gmap - close info window', 'click',  ' - "' + marker.title + '"');
                                     }
+                                    
+                                    var searchIn = $('#' + gme.mapSettings.id + '-form .js-gme-saddress').get(0);
+                                    _this._searchAddressByInput(searchIn.value);
+                                    _this.resize();
                                 
                                     //$('.tx-go-maps').removeClass('infowindowActive');
                                     $(window).trigger('resize');
                                     $('#' + gme.mapSettings.id + '-infowindow .infowindow-content').css('display', 'none');
                                     $('#' + gme.mapSettings.id + '-infowindow').removeClass('open');
-                                    $('.leftSide').addClass('open');
-
+                                    if($('.gme-addresses').find('> li').length > 0) {
+                                        $('.leftSide').addClass('open');
+                                    }
+                                    
                                 });
                                 if($('.tx-go-maps .infowindow .infowindow-content .infowindow .infowindow-image').length <= 0) {
                                     $('.tx-go-maps .infowindow .infowindow-content .infowindow .infowindow-content').addClass('no-img');
