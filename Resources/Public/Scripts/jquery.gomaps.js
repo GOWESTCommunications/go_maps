@@ -743,9 +743,11 @@
             
             if(typeof(searchIn) != "undefined") {
                 searchIn.value = searchParameter ? searchParameter : '';
+                $('.js-gme-saddress').val(decodeURIComponent(searchIn.value));
             }
 
-            $('.js-gme-saddress').val(decodeURIComponent(searchIn.value));
+
+            
                 
             // Search
             // Create the search box and link it to the UI element.
